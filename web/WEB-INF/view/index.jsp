@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>${title}</title>
 </head>
 <body>
-$END$
+0.0 ${message}
 </body>
 </html>

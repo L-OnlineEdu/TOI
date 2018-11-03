@@ -9,7 +9,7 @@
     <!-- 属性 -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.3.3.RELEASE</spring.version>
+        <spring.version>5.1.2.RELEASE</spring.version>
     </properties>
     <dependencies>
         <dependency>
