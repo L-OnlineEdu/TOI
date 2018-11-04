@@ -1,3 +1,5 @@
+package core;
+
 /***
  *  @author kwinter
  *  @version 1.0
