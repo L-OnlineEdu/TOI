@@ -3,5 +3,5 @@
 
   ## TO DO List
   >   *  @Action-> @RequestMapping
-  >   *  实现mybaties
+  >   *  实现使用mybaties的Dao
   >   * 修改bug
