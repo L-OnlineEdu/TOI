@@ -203,10 +203,13 @@ Scripts
 
 <!-- jQuery Library -->
 <script src="/utils/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/assert/core/login/user.js"></script>
+<script type="text/javascript" src="/assert/core/login/token.js"></script>
+<script type="text/javascript" src="/assert/tea/js/teaass.js"></script>
 <script src="/utils/swx/sweetalert-dev.js"></script>
 <!--materialize js-->
 <script type="text/javascript" src="/utils/js/materialize.min.js"></script>
-<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/utils/js/perfect-scrollbar.min.js"></script>
 
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
@@ -526,6 +529,11 @@ Scripts
     }
 
 </style>
+<script type="text/html" id="token">
+    ${token}
+</script>
+
+
 </body>
 
 </html>

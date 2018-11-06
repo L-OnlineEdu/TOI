@@ -1,10 +1,17 @@
 package onlineclass.discuss.controller;
 
+import core.dao.Dao;
+import core.model.Message;
+import core.model.SystemMessage;
+import core.model.User;
+import core.msg.messager.TemporalMsgs;
+import core.utils.Utils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,13 +27,15 @@ public class DiscussController {
     private String messageDetial;
     private String msg;
     private List stuList;
+    private TemporalMsgs temporalMsgs;
+    private Dao dao;
     //@Autowired
     //private TemporalMsgs temporalMsgs;
  /*   讨论：提供小组讨论、单独讨论、课堂讨论、举手、教师提问功能*/
 
     @RequestMapping("discux")
     public String sendMessage() {
-     /*   if (messageDetial!=null){
+        if (messageDetial != null) {
             User sender= Utils.getUser();
             Message message=new Message();
             message.setMessage(messageDetial);
@@ -36,10 +45,10 @@ public class DiscussController {
             message.setSendTime(new Date()+"");
          temporalMsgs.sendMessage(message);
            // System.out.println("map:"+temporalMsgs.getMsgMap());
-        }*/
+        }
         return SUCCESS;
     }
-/*
+
 
 
 
@@ -77,16 +86,9 @@ public class DiscussController {
     public String handsUp(){
         User sender= Utils.getUser();
       //  User userBeAsked= (User) new Dao().select(User.class,beAsked);
-       */
-/* Message message=new Message();
-        message.setMessage("handsUp:"+userBeAsked);
-        message.setSender(sender);
-        message.setReceiveId(receverid);
-        message.setTypes(Message.MessageType_SystemMsg+"");*//*
-
         SystemMessage systemMessage=new SystemMessage(SystemMessage.SystemMessageType_HandsUp,sender,beAsked,messageDetial);
-       temporalMsgs.sendMessage(systemMessage);
-       // System.out.println("map:"+temporalMsgs.getMsgMap());
+        temporalMsgs.sendMessage(systemMessage);
+        // System.out.println("map:"+temporalMsgs.getMsgMap());
         msg="success";
         return SUCCESS;
     }
@@ -95,11 +97,10 @@ public class DiscussController {
 
     @RequestMapping("stuList")
     public String stuList(){
-        Dao dao=new Dao();
+
         stuList=dao.selectAll("User u where u.role='stu'");
         return SUCCESS;
     }
-*/
 
 
     public int getMessagetype() {

@@ -1,10 +1,28 @@
 package core.controller;
 
-import org.springframework.stereotype.Controller;
+import core.model.User;
+import core.utils.Utils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
 public class AutoLoginController {
-    public String autoLogin() {
-        return "";
+    @RequestMapping("/core/autologin")
+    public Map autoLogin(String token) {
+
+        User user = Utils.getUser(token);
+        String msg;
+        if (user == null) {
+            msg = "error";
+        } else {
+            msg = "success";
+        }
+        Map data = new HashMap<>();
+        data.put("msg", msg);
+        data.put("user", user);
+        return data;
     }
 }

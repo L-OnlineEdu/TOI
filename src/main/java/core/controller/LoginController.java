@@ -38,6 +38,7 @@ public class LoginController {
                 if (vu.getPassWord().equals(passWd)) {
                     String token = Utils.saveUser(vu);
                     modelAndView.addObject("token", token);
+                    modelAndView.addObject("user", vu);
                     if (vu.getRole().equals("stu"))
                         modelAndView.setViewName(STU);
                     else {
