@@ -18,9 +18,10 @@ public class LoginController {
     //private Boolean courseFlag;
 
 
+
     @RequestMapping("/home/login")
     public ModelAndView login(String userName, String passWd) {
-        String SUCCESS = "tea/home";
+        String SUCCESS = "redirect:/tea/home";
         String ERROR = "core/login";
         String STU = "stu/stuhome";
         ModelAndView modelAndView = new ModelAndView();

@@ -2,7 +2,9 @@ package core.tester;
 
 import core.dao.UserDao;
 import core.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserDaoImpl implements UserDao {
     @Override
     public User selectByUName(String userName) {

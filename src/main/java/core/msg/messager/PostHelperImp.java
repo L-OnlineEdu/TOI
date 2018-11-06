@@ -3,22 +3,15 @@ package core.msg.messager;
 import core.model.Message;
 import core.model.SystemMessage;
 import core.msg.msgfilter.Channel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostHelperImp implements PostHelper {
-
+    @Autowired
     private PostMan postMan;
     private Channel userChannel;
 
-    public Channel getUserChannel() {
-        return userChannel;
-    }
-
-
-    /*public PostHelperImp(PostMan postMan, Channel userChannel) {
-        this.postMan = postMan;
-        this.userChannel = userChannel;
-    }
-    */
 
     private void putMessagesToPostBox(Message m, int uid) {
 
@@ -38,6 +31,7 @@ public class PostHelperImp implements PostHelper {
 
     @Override
     public void getMessageSend(Message message, int uid) {
+        System.out.println(message);
         int channel;
         if (message instanceof SystemMessage)
             channel = 1;

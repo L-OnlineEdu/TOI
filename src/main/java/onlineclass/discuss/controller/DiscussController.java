@@ -7,8 +7,9 @@ import core.model.SystemMessage;
 import core.model.User;
 import core.msg.messager.TemporalMsgs;
 import core.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,12 +17,13 @@ import java.util.Date;
 import java.util.List;
 
 
-@Controller
 @Scope("prototype")
 @RestController
 public class DiscussController {
-
+    @Autowired
     private TemporalMsgs temporalMsgs;
+    @Autowired
+    @Qualifier("daoImpl")
     private Dao dao;
     //@Autowired
     //private TemporalMsgs temporalMsgs;

@@ -147,7 +147,7 @@
                             <span><!-- react-text: 124 -->本课堂有 <!-- /react-text --><!-- react-text: 125 -->1
                                 <!-- /react-text --><!-- react-text: 126 --> 题正在开启中<!-- /react-text --></span><a
                                 class="close-btn">全部关闭</a></div>
-                        <a class="classroom-card" href="/tea/two.jsp">
+                        <a class="classroom-card" href="/tea/two">
                             <img class="classroom-image" src="/utils/img/default-class.png" alt="classroom">
                             <div class="classroom-status">
                                 <div class="classroom-title">

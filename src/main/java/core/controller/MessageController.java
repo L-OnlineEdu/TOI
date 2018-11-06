@@ -3,25 +3,27 @@ package core.controller;
 
 import core.model.Message;
 import core.model.User;
-import core.msg.messager.TemporalMsgs;
+import core.msg.messager.PostOffice;
 import core.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-@Controller
+@RestController
 @Scope("prototype")
 
 public class MessageController {
 
     String msg;
-    private TemporalMsgs temporalMsgs;
+    @Autowired
+    private PostOffice postOffice;
 
     @RequestMapping("sendM")
     public String sendMessage(int receiveid, int msgtype, String msg) {
-        System.out.println(temporalMsgs);
+        //  System.out.println(postOffice);
         if (msg != null) {
 
             User sender = Utils.getUser();
@@ -31,7 +33,8 @@ public class MessageController {
             message.setReceiveId(receiveid);
             message.setTypes(msgtype + "");
             message.setSendTime(new Date() + "");
-            temporalMsgs.sendMessage(message);
+
+            postOffice.userSendMessage(message);
 
         }
 

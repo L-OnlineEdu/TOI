@@ -54,12 +54,15 @@ $(function () {
          initDrop();
      })*/
     //initWS()
-    ws = new WS(myuid, 3, function (event) {
+
+    ws = new WS(myuid, 2, function (event) {
         var obj = eval('(' + event.data + ')');
         var objl = [];
         objl.push(obj);
         jiexi(objl)
-    })
+    });
+
+    ws.init()
 });
 
 function init() {

@@ -2,14 +2,17 @@ package core.services;
 
 import core.dao.GroupDao;
 import core.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class MessageServices {
 
 
+    @Autowired
     private GroupDao dao;
 
     public List getAllUserId() throws Exception {

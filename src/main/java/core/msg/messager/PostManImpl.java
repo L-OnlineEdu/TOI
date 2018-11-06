@@ -2,11 +2,14 @@ package core.msg.messager;
 
 import core.model.Message;
 import core.msg.webSocket.WebSocketServer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostManImpl implements PostMan {
 
     private static int mid = 1;
-
+    @Autowired
     private WebSocketServer ws;
 
 

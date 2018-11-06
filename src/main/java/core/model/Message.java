@@ -13,6 +13,18 @@ public class Message {
     private int receiveId;
     private String sendTime;
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "mid=" + mid +
+                ", types='" + types + '\'' +
+                ", sender=" + sender +
+                ", message='" + message + '\'' +
+                ", receiveId=" + receiveId +
+                ", sendTime='" + sendTime + '\'' +
+                '}';
+    }
+
     public int getMid() {
         return mid;
     }
