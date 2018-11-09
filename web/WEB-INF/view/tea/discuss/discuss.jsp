@@ -105,7 +105,11 @@
 <script src="/utils/js/jquery-1.11.2.min.js"></script>
 <script src="/utils/alert/js/alert.js"></script>
 <%--me--%>
-<script type="text/javascript" src="jxv4.js"></script>
+<script type="text/javascript" src="/assert/core/msg/reconnecting-websocket.min.js"></script>
+
+<script type="text/javascript" src="/assert/core/msg/ws.js"></script>
+
+<script type="text/javascript" src="/assert/core/msg/jxoo.js"></script>
 <!--materialize js-->
 <script type="text/javascript" src="/utils/js/materialize.min.js"></script>
 
@@ -246,9 +250,9 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="userName" value="<s:property value="user.userName"/>">
-<input type="hidden" id="userId" value="<s:property value="user.uid"/>">
-<input type="hidden" id="userRole" value="<s:property value="user.role"/>">
+<input type="hidden" id="userName" value="${user.userName}"/>">
+<input type="hidden" id="userId" value="${user.uid}">
+<input type="hidden" id="userRole" value="${user.role}">
 <script type="text/html" id="newMesTemplateT">
     <div class="discussionCard" style="padding: 16px 12px 12px;">
         <img size="64" class="dropdown-button" href="#!" data-activates="dropdown%mid%"

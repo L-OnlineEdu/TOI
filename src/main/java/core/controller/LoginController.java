@@ -18,9 +18,10 @@ public class LoginController {
     //private Boolean courseFlag;
 
 
+
     @RequestMapping("/home/login")
     public ModelAndView login(String userName, String passWd) {
-        String SUCCESS = "tea/home";
+        String SUCCESS = "redirect:/tea/home";
         String ERROR = "core/login";
         String STU = "stu/stuhome";
         ModelAndView modelAndView = new ModelAndView();
@@ -38,6 +39,7 @@ public class LoginController {
                 if (vu.getPassWord().equals(passWd)) {
                     String token = Utils.saveUser(vu);
                     modelAndView.addObject("token", token);
+                    modelAndView.addObject("user", vu);
                     if (vu.getRole().equals("stu"))
                         modelAndView.setViewName(STU);
                     else {

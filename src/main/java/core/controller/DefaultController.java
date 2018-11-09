@@ -9,4 +9,14 @@ public class DefaultController {
     public String login() {
         return "/core/login";
     }
+
+    @RequestMapping("/tea/two")
+    public String two() {
+        return "/tea/two";
+    }
+
+    @RequestMapping("/tea/home")
+    public String teahome() {
+        return "tea/home";
+    }
 }
