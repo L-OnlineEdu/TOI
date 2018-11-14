@@ -47,7 +47,7 @@ pushid = '1';
 function findpaper() {
 
     $.ajax({
-        url: "/findAllPaperAction",
+        url: "/tea/findAllPaper",
         data: "",
         success: function (data) {
             pushid = data.paperList[0].pid;
@@ -59,8 +59,10 @@ function findpaper() {
                 console.info("pid:" + val.pid);
                 pid = val.pid;
                 arrp[pid] = val;
-                arrx[pid] = val.questions;
-                danti += val.questions.length;
+                /* arrx[pid] = val.questions;
+                 danti += val.questions.length;*/
+                arrx[pid] = 10;
+                danti += 10;
 
                 $("#thaom").append(" <span id='p" + pid + "' onclick='jx(this)'>\n" +
                     "                <div style=\"display: flex; flex-direction: row; justify-content: space-between; align-items: center; height: 36px; margin-bottom: 5px; margin-top: 5px; cursor: pointer; position: relative; box-sizing: border-box; \"   >\n" +
@@ -69,7 +71,7 @@ function findpaper() {
                     "                        <i class=\"mdi-content-inbox\" style=\"font-size: 21px; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; left: -2px;\"></i>\n" +
                     "                        <span>" + val.pname + "</span>\n" +
                     "                    </div>\n" +
-                    "                    <label style=\"text-align: right; font-size: 12px; color: rgb(74, 74, 74); margin-right: 30px;\">" + val.questions.length + "</label>\n" +
+                    "                    <label style=\"text-align: right; font-size: 12px; color: rgb(74, 74, 74); margin-right: 30px;\">" + 10 + "</label>\n" +
                     "                </div>\n" +
                     "            </span>")
 
@@ -154,7 +156,7 @@ function jiexi() {
     dra()
 }
 
-function sendx() {
+/*function sendx() {
     //window.location.href="about:blank";
     //window.close();
     // window.parent.close()
@@ -197,7 +199,7 @@ function sendx() {
         });
 
 
-}
+}*/
 
 function jx(t) {
 
@@ -232,11 +234,12 @@ function de(qu) {
 function editor(qu) {
     console.info("1234567-" + qu);
     $.ajax({
-        url: "/selectQuestionAction.action",
+        url: "selectQuestionAction",
         type: "POST",
-        data: {"questionId": qu},
+        data: {"questionid": qu},
         dataType: "json",
         success: function (data) {
+            alert("ssss");
             var ane = data.question.answers;
             var Alocation = ane.indexOf("A");
             var Blocation = ane.indexOf("B");

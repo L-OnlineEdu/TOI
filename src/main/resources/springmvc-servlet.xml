@@ -13,7 +13,7 @@
     <context:component-scan base-package="core.controller"/>
     <context:component-scan base-package="*.*.controller"/>
     <context:component-scan base-package="core.msg.**"/>
-    <context:component-scan base-package="core.dao"/>
+    <!-- <context:component-scan base-package="core.dao"/>-->
     <context:component-scan base-package="core.services"/>
     <context:component-scan base-package="core.tester"/>
     <!-- don't handle the static resource -->
@@ -21,6 +21,12 @@
 
     <!-- if you use annotation you must configure following setting -->
     <mvc:annotation-driven/>
+    <!-- <mvc:message-converters register-defaults="true">
+        &lt;!&ndash; <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+             <property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+         </bean>&ndash;&gt;
+     </mvc:message-converters>-->
+
 
     <!-- configure the InternalResourceViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -30,4 +36,6 @@
         <!-- 后缀 -->
         <property name="suffix" value=".jsp"/>
     </bean>
+
+
 </beans>
