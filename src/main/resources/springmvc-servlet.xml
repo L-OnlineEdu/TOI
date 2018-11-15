@@ -10,22 +10,29 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- scan the package and the sub package -->
-    <context:component-scan base-package="core.controller"/>
+
+    <context:component-scan base-package="core"/>
+    <context:component-scan base-package="onlineclass"/>
+    <context:component-scan base-package="paperandquestion"/>
+
+
+    <!--<context:component-scan base-package="core.controller"/>
     <context:component-scan base-package="*.*.controller"/>
     <context:component-scan base-package="core.msg.**"/>
-    <!-- <context:component-scan base-package="core.dao"/>-->
+    <context:component-scan base-package="core.dao"/>
     <context:component-scan base-package="core.services"/>
     <context:component-scan base-package="core.tester"/>
+    <context:component-scan base-package="paperandquestion.controller"/>-->
+    <!--<context:component-scan base-package="paperandquestion.dao"/>-->
+    <!--<context:component-scan base-package="paperandquestion.services"/>-->
+
+
     <!-- don't handle the static resource -->
     <mvc:default-servlet-handler/>
 
     <!-- if you use annotation you must configure following setting -->
     <mvc:annotation-driven/>
-    <!-- <mvc:message-converters register-defaults="true">
-        &lt;!&ndash; <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-             <property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
-         </bean>&ndash;&gt;
-     </mvc:message-converters>-->
+
 
 
     <!-- configure the InternalResourceViewResolver -->
@@ -37,5 +44,56 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 自动搜索bean -->
+    <!--  <context:annotation-config/>-->
+    <!-- <context:component-scan base-package="core.services" />-->
+    <!-- <context:component-scan base-package="core.controller"/>-->
+
+    <context:component-scan base-package="paperandquestion.dao"/>
+    <bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/teachon?serverTimezone=GMT%2B8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <!-- mybatis核心bean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="dataSource" ref="datasource"/>
+        <!-- 这句配置mapper配置文件的位置 如果采用注解的方式这句可以省去 -->
+        <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+    </bean>
+    <!-- 自动搜索mapper接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+        <property name="basePackage" value="paperandquestion.dao"/>
+        <!--   <property name="annotationClass" value="core.utils.MybatisDao"/>-->
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="5242440"></property>
+    </bean>
+
+
+    <!-- 事务处理 -->
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+    <!--<property name="dataSource" ref="datasource"/>-->
+    <!--</bean>-->
+
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+    <!--<tx:attributes>-->
+    <!--<tx:method name="insert*" propagation="REQUIRED"/>-->
+    <!--<tx:method name="delete*" propagation="REQUIRED"/>-->
+    <!--<tx:method name="update*" propagation="REQUIRED"/>-->
+    <!--<tx:method name="select*" propagation="SUPPORTS"/>-->
+    <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+
+    <!--<aop:config>
+        <aop:pointcut id="serviceCut" expression="execution(public * Service.*.*(..))" />
+        <aop:advisor pointcut-ref="serviceCut" advice-ref="txAdvice" />
+    </aop:config>-->
 
 </beans>

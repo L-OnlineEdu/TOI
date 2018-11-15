@@ -50,10 +50,11 @@
 <body>
 <div id="importQ" class="modal">
     <div class="modal-content">
-        <s:form action="FileUp" method="post" enctype="multipart/form-data">
-            <s:file label="上传文件" name="upfile"></s:file>
-            <s:submit value="上传"></s:submit>
-        </s:form>
+        <form action="/tea/uploadFile.do" method="post" enctype="multipart/form-data">
+            <label>文件上传</label>
+            <input type="file" name="file">
+            <input type="submit" value="提交">
+        </form>
     </div>
     <div class="modal-footer">
         <a href="#" class=" modal-action modal-close waves-effect waves-red btn-flat">取消</a>

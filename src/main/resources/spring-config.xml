@@ -1,55 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <!-- 自动搜索bean -->
-    <!--  <context:annotation-config/>-->
-    <!-- <context:component-scan base-package="core.services" />-->
-    <!-- <context:component-scan base-package="core.controller"/>-->
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/teachon?serverTimezone=GMT%2B8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="123456"/>
-    </bean>
-
-    <!-- mybatis核心bean -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="datasource"/>
-        <!-- 这句配置mapper配置文件的位置 如果采用注解的方式这句可以省去 -->
-        <property name="mapperLocations" value="classpath*:/core/mapper/*.xml"/>
-        <!-- <property name="configLocation" value="classpath:mybatis-config.xml" />-->
-    </bean>
-    <!-- 自动搜索mapper接口 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="core.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
-    </bean>
-
-
-    <!-- 事务处理 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="datasource"/>
-    </bean>
-
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="insert*" propagation="REQUIRED"/>
-            <tx:method name="delete*" propagation="REQUIRED"/>
-            <tx:method name="update*" propagation="REQUIRED"/>
-            <tx:method name="select*" propagation="SUPPORTS"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <!--<aop:config>
-        <aop:pointcut id="serviceCut" expression="execution(public * Service.*.*(..))" />
-        <aop:advisor pointcut-ref="serviceCut" advice-ref="txAdvice" />
-    </aop:config>-->
 
 
 </beans>
