@@ -385,7 +385,7 @@ Scripts
 ================================================ -->
 
 <script id="questionx" type="text/html">
-    <div id="questionId-%questionId%" name="questionId-%pid%" class="shineBoxWrapper drag sss">
+    <div id="questionid-%questionid%" name="questionid-%pid%" class="shineBoxWrapper drag sss">
         <div class="question-card-wapper">
             <div class="top-wapper">
                 <div class="left-wapper">
@@ -446,7 +446,7 @@ Scripts
                     <div class="operate-btn-wapper">
                         <div class="center-btn-wapper">
                             <div class="center-btn-wapper">
-                                <button id="editor-%questionId%" tabindex="0" type="button"
+                                <button id="editor-%questionid%" tabindex="0" type="button"
                                         class="btn waves-effect waves-light editorCl"
                                         style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 36px; line-height: 36px; min-width: 88px; color: rgb(0, 150, 136); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgba(0, 0, 0, 0); text-align: center;">
                                     <div>
@@ -455,7 +455,7 @@ Scripts
                                         <span style="position: relative; padding-left: 0px; padding-right: 16px; vertical-align: middle; letter-spacing: 0px; text-transform: initial; font-weight: 500; font-size: 14px; color: rgb(0, 150, 136); text-align: center;">编辑</span>
                                     </div>
                                 </button>
-                                <button id="delete-%questionId%" tabindex="0" type="button"
+                                <button id="delete-%questionid%" tabindex="0" type="button"
                                         class="btn waves-effect waves-light deleteCl"
                                         style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Roboto, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; transform: translate(0px, 0px); height: 36px; line-height: 36px; min-width: 88px; color: rgb(0, 150, 136); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 2px; user-select: none; position: relative; overflow: hidden; background-color: rgba(0, 0, 0, 0); text-align: center;">
                                     <div>
