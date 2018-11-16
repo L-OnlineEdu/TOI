@@ -47,20 +47,27 @@ pushid = '1';
 function findpaper() {
 
     $.ajax({
-        url: "/findAllPaperAction",
+        url: "/tea/findAllPaper",
         data: "",
         success: function (data) {
-            pushid = data.paperList[0].pid;
+            //alert(data.length)
+            //pushid = data.paperList[0].pid;
+            var da = JSON.parse(data);
+            console.info(da.paperList);
+            pushid = da.paperList[0].pid;
+
 
             danti = 0;
             tiku = 0;
-            tiku = data.paperList.length;
-            $.each(data.paperList, function (key, val) {
+            tiku = da.paperList.length;
+            $.each(da.paperList, function (key, val) {
                 console.info("pid:" + val.pid);
                 pid = val.pid;
                 arrp[pid] = val;
-                arrx[pid] = val.questions;
-                danti += val.questions.length;
+                arrx[pid] = val.questionList;
+                danti += val.questionList.length;
+                /* arrx[pid] = 10;
+                 danti += 10;*/
 
                 $("#thaom").append(" <span id='p" + pid + "' onclick='jx(this)'>\n" +
                     "                <div style=\"display: flex; flex-direction: row; justify-content: space-between; align-items: center; height: 36px; margin-bottom: 5px; margin-top: 5px; cursor: pointer; position: relative; box-sizing: border-box; \"   >\n" +
@@ -69,7 +76,7 @@ function findpaper() {
                     "                        <i class=\"mdi-content-inbox\" style=\"font-size: 21px; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; left: -2px;\"></i>\n" +
                     "                        <span>" + val.pname + "</span>\n" +
                     "                    </div>\n" +
-                    "                    <label style=\"text-align: right; font-size: 12px; color: rgb(74, 74, 74); margin-right: 30px;\">" + val.questions.length + "</label>\n" +
+                    "                    <label style=\"text-align: right; font-size: 12px; color: rgb(74, 74, 74); margin-right: 30px;\">" + val.questionList.length + "</label>\n" +
                     "                </div>\n" +
                     "            </span>")
 
@@ -124,18 +131,18 @@ function jiexi() {
         if (valx.flag == undefined) {
             arr = [];
             al = ['A', 'B', 'C', 'D'];
-            if (valx.answers.indexOf("A、") > -1) {
+            if (valx.answer.indexOf("A、") > -1) {
                 aa = "、"
             } else {
                 aa = "."
             }
 
             for (i = 0; i < al.length; i++) {
-                xstart = valx.answers.search(al[i] + "\.?、?");
+                xstart = valx.answer.search(al[i] + "\.?、?");
                 xend = -1;
                 if (i + 1 != al.length)
-                    xend = valx.answers.search(al[i + 1] + "\.?、?");
-                arr[i] = valx.answers.slice(xstart + 2, xend)
+                    xend = valx.answer.search(al[i + 1] + "\.?、?");
+                arr[i] = valx.answer.slice(xstart + 2, xend)
 
             }
             valx.a00 = arr[0];
@@ -154,7 +161,7 @@ function jiexi() {
     dra()
 }
 
-function sendx() {
+/*function sendx() {
     //window.location.href="about:blank";
     //window.close();
     // window.parent.close()
@@ -197,7 +204,7 @@ function sendx() {
         });
 
 
-}
+}*/
 
 function jx(t) {
 
@@ -217,10 +224,8 @@ $("#importQuestion").click(function () {
 function de(qu) {
     console.info("dasdadasd" + qu);
     $.ajax({
-        url: "/deleteQuestionAction.action",
-        type: "POST",
-        data: {"questionId": qu},
-        dataType: "json",
+        url: "/tea/deleteQuestion",
+        data: {"questionid": qu},
         success: function (data) {
             setTimeout("location.reload();", 3000)
             // findpaper()
@@ -232,22 +237,22 @@ function de(qu) {
 function editor(qu) {
     console.info("1234567-" + qu);
     $.ajax({
-        url: "/selectQuestionAction.action",
-        type: "POST",
-        data: {"questionId": qu},
-        dataType: "json",
+        url: "/tea/getQuestion",
+        data: {"questionid": qu},
         success: function (data) {
-            var ane = data.question.answers;
+            alert(data.length);
+            var da = JSON.parse(data);
+            var ane = da.answer;
             var Alocation = ane.indexOf("A");
             var Blocation = ane.indexOf("B");
             var Clocation = ane.indexOf("C");
             var Dlocation = ane.indexOf("D");
             var str = ane.substring(Alocation, Blocation - 1) + "\n" + ane.substring(Blocation, Clocation - 1) + "\n" + ane.substring(Clocation, Dlocation - 1) + "\n" + ane.substring(Dlocation);
-            $("#editorQuestionid").val(data.question.questionId);
-            $("#editorRightAnswer").val(data.question.rightAnswer);
-            $("#editorTitle").val(data.question.title);
-            $("#editorType").val(data.question.type);
-            $("#editorPaperId").val(data.question.pid);
+            $("#editorQuestionid").val(da.questionid);
+            $("#editorRightAnswer").val(da.rightAnswer);
+            $("#editorTitle").val(da.title);
+            $("#editorType").val(da.type);
+            $("#editorPaperId").val(da.pid);
             $("#editorAnswer").val(str)
         }
 
@@ -258,13 +263,11 @@ $("#editTrue").click(function () {
     var questionid = $("#editorQuestionid").val();
     var rightAnswer = $("#editorRightAnswer").val();
     var title = $("#editorTitle").val();
-    var answers = $("#editorAnswer").val();
-    console.info("questionId  " + questionid + " " + rightAnswer + " " + title + " " + answers);
+    var answer = $("#editorAnswer").val();
+    console.info("questionid  " + questionid + " " + rightAnswer + " " + title + " " + answer);
     $.ajax({
-        url: "/updateQuestionAction.action",
-        type: "POST",
-        data: {"questionId": questionid, "rightAnswer": rightAnswer, "title": title, "answers": answers},
-        dataType: "json",
+        url: "/tea/updateQuestion",
+        data: {"questionid": questionid, "rightAnswer": rightAnswer, "title": title, "answer": answer},
         success: function (data) {
             setTimeout("location.reload();", 3000)
             // findpaper()
@@ -290,10 +293,8 @@ $(".editorPaperContext").blur(function () {
     var ptime = $(".editorPaperTime").val();
     console.info("pcontext  " + pcontext + " " + ptime);
     $.ajax({
-        url: "/updatePaperAction.action",
-        type: "POST",
+        url: "/tea/updatePaper",
         data: {"pid": pid, "ptime": ptime, "pcontext": pcontext},
-        dataType: "json",
         success: function (data) {
             setTimeout("location.reload();", 3000)
         }
@@ -308,7 +309,7 @@ $(".editorPaperTime").blur(function () {
     var ptime = $(".editorPaperTime").val();
     console.info("pcontext  " + pid + " " + pcontext + " " + ptime);
     $.ajax({
-        url: "/updatePaperAction.action",
+        url: "/tea/updatePaper",
         type: "POST",
         data: {"pid": pid, "ptime": ptime, "pcontext": pcontext},
         dataType: "json",
@@ -346,7 +347,7 @@ $(".delPaper").click(function () {
         },
         function () {
             $.ajax({
-                url: "/deletePaperAction",
+                url: "/tea/deletePaper",
                 data: {"pid": pid},
                 success: function (data) {
                     swal({
@@ -385,7 +386,7 @@ $("#addPaperTrue").click(function () {
     var str = JSON.stringify(listq);
     alert(str);
     $.ajax({
-        url: "/addPaperAction.action",
+        url: "/tea/addPaper",
         type: "POST",
         data: {"pname": pname, "pcontext": pcontext, "ptime": ptime, "questionList": str},
         dataType: "json",
@@ -427,5 +428,3 @@ function deleteImage($item) {
     });
 
 }
-
- 
