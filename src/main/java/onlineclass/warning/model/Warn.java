@@ -2,8 +2,20 @@ package onlineclass.warning.model;
 
 
 import core.model.User;
+import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
+@Component
+@NameStyle(Style.normal)
 public class Warn {
+    @Id
+    @Column(name = "wid")
+    @KeySql(useGeneratedKeys = true)
     private int id;
     private User teacher;
     private User student;
@@ -48,5 +60,16 @@ public class Warn {
 
     public void setPointsOff(int pointsOff) {
         this.pointsOff = pointsOff;
+    }
+
+    @Override
+    public String toString() {
+        return "Warn{" +
+                "id=" + id +
+                ", teacher=" + teacher +
+                ", student=" + student +
+                ", warnMessage='" + warnMessage + '\'' +
+                ", pointsOff=" + pointsOff +
+                '}';
     }
 }

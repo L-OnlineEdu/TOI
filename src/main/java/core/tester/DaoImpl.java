@@ -2,7 +2,6 @@ package core.tester;
 
 import core.dao.Dao;
 import core.model.User;
-import onlineclass.warning.model.Warn;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -19,7 +18,16 @@ public class DaoImpl implements Dao {
         tester.setPassWord("123");
         tester.setRole("tea");
 
+
         list.add(tester);
+        User tester1 = new User();
+        tester1.setUid(2);
+        tester1.setUserName("test");
+        tester1.setPassWord("123");
+        tester1.setRole("tea");
+
+
+        list.add(tester1);
         return list;
     }
 
@@ -34,7 +42,9 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public void del(Warn x) {
+    public void del(Object x) {
 
     }
+
+
 }

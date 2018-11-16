@@ -3,6 +3,7 @@ package core.msg.webSocket;
 import com.alibaba.fastjson.JSON;
 import core.model.Message;
 import core.msg.messager.PostOffice;
+import core.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
@@ -11,8 +12,10 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -39,6 +42,8 @@ public class WebSocketServer {
         if (serverMap.containsValue(this)) {
             Iterator<Integer> keys = serverMap.keySet().iterator();
             int userId = 0;
+            int uid = Utils.getUser().getUid();
+            postOffice.userLeave(userId);
             while (keys.hasNext()) {
                 userId = keys.next();
                 if (serverMap.get(userId) == this) {
@@ -97,4 +102,11 @@ public class WebSocketServer {
         t.printStackTrace();
     }
 
+    public List getOnlineUserIds() {
+        List list = new ArrayList();
+        if (serverMap != null) {
+            list.addAll(serverMap.keySet());
+        }
+        return list;
+    }
 }

@@ -2,12 +2,12 @@ package core.controller;
 
 import core.dao.UserDao;
 import core.model.User;
-import core.tester.UserDaoImpl;
 import core.utils.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 @Controller
@@ -17,6 +17,8 @@ public class LoginController {
     private Map infoMap;
     //private Boolean courseFlag;
 
+    @Resource(name = "userDaoImp")
+    private UserDao userDao;
 
 
     @RequestMapping("/home/login")
@@ -28,7 +30,7 @@ public class LoginController {
         //  courseFlag = Utils.COURSE_OPING;
         System.out.println(userName);
         if (userName != null && passWd != null) {
-            UserDao userDao = new UserDaoImpl();
+
             User vu = userDao.selectByUName(userName);
             System.out.println(vu);
             if (vu == null) {

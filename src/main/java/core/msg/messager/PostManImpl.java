@@ -5,6 +5,8 @@ import core.msg.webSocket.WebSocketServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class PostManImpl implements PostMan {
 
@@ -29,5 +31,15 @@ public class PostManImpl implements PostMan {
     public void sendMessagesToUser(Message m) {
         refreshMid(m);
         ws.sendMessageToUser(m.getReceiveId(), m);
+    }
+
+    private List getOnlineUserIds() {
+
+        return ws.getOnlineUserIds();
+    }
+
+    @Override
+    public int getOnlineNums() {
+        return getOnlineUserIds().size();
     }
 }
