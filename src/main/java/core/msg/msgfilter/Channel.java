@@ -12,12 +12,13 @@ public class Channel {
     public static int CHAT_MESSAGE = 0;
     public static int SYSTEM_MESSAGE = 1;
     public static int ALL_CHANNEL = 2;
+    public static int UNOPEN_CHANNEL = 9;
 
     private PostBox chatPostBox = new PostBoxImp();
 
     private PostBox sysmsgPostBox = new PostBoxImp();
 
-    private int channelOpened = 9;
+    private int channelOpened = UNOPEN_CHANNEL;
 
     public void open(Message message) {
         if (message instanceof SystemMessage) {
@@ -49,7 +50,7 @@ public class Channel {
     }
 
     public Boolean isChannelOpened(int channel) {
-        return channelOpened >= ALL_CHANNEL || channelOpened == channel;
+        return channelOpened == ALL_CHANNEL || channelOpened == channel;
     }
 
 }

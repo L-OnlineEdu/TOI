@@ -64,6 +64,9 @@ public class PostOffice {
         }
     }
 
+    public void userLeave(int uid) {
+        removeChannel(uid);
+    }
     private List<Integer> sortMessage(Message message) throws Exception {
         List list = new ArrayList();
         int type = message.getTypes() == null ? 0 : Integer.parseInt(message.getTypes());
@@ -118,6 +121,10 @@ public class PostOffice {
         } else {
             return (Channel) usersPostBoxes.get(uid);
         }
+    }
+
+    private void removeChannel(int uid) {
+        usersPostBoxes.remove(uid);
     }
 
 }

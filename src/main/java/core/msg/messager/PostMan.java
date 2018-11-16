@@ -6,4 +6,6 @@ public interface PostMan {
     void sendMessagesToUser(Message m, int uid);
 
     void sendMessagesToUser(Message m);
+
+    int getOnlineNums();
 }

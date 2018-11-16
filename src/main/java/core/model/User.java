@@ -1,12 +1,24 @@
 package core.model;
 
+import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.List;
 
-
+@Component
+@Table(name = "users")
+@NameStyle(Style.normal)
 public class User {
-
+    @Id
+    @KeySql(useGeneratedKeys = true)
     private int uid;
     private String userName;
+    @Column(name = "passwd")
     private String passWord;
     private String role;
     private List groups;
