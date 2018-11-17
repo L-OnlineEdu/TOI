@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="paperandquestion.dao.PaperDao">
+    <select id="getPaper" parameterType="int" resultType="paperandquestion.model.Paper">
+        SELECT * FROM paper WHERE pid = #{pid}
+    </select>
+    <insert id="addPaper" parameterType="paperandquestion.model.Paper">
+        INSERT INTO paper(pname,ptime,pcontext) VALUES (#{pname},#{ptime},#{pcontext})
+    </insert>
+    <update id="updatePaper" parameterType="paperandquestion.model.Paper">
+         UPDATE paper SET pname = #{pname},ptime = #{ptime},pcontext = #{pcontext} WHERE pid = #{pid}
+     </update>
+    <delete id="deletePaper">
+         DELETE from paper WHERE pid = #{pid}
+    </delete>
+
+   <resultMap id="paperList" type="paperandquestion.model.Paper">
+        <id column="pid" property="pid" />
+        <result column="pname" property="pname" />
+        <result column="pcontext" property="pcontext" />
+        <result column="ptime" property="ptime" />
+       <collection property="questionList" column="pid" select="paperandquestion.dao.QuestionDao.findAllQuestion"/>
+    </resultMap>
+
+    <select id="findAllPaper"  resultMap="paperList">
+        SELECT * FROM paper
+    </select>
+</mapper>
