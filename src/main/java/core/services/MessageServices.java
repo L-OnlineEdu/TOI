@@ -1,6 +1,7 @@
 package core.services;
 
 import core.dao.GroupDao;
+import core.dao.UserDao;
 import core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,14 @@ public class MessageServices {
 
 
     @Autowired
-    private GroupDao dao;
+    private GroupDao groupDao;
+
+    @Autowired
+    private UserDao userDao;
 
     public List getAllUserId() throws Exception {
 
-        List users = dao.selectAll("user");
+        List users = userDao.selectAll("user");
 
         return getUserListIds(users);
 
@@ -25,7 +29,7 @@ public class MessageServices {
 
     public List getUserIdInGroup(int gid) throws Exception {
         List userIds = new ArrayList();
-        List users = dao.selectAllGroupUsers(gid);
+        List users = groupDao.selectAllGroupUsers(gid);
 
         return getUserListIds(users);
 

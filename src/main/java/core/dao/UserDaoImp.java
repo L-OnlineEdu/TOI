@@ -4,6 +4,7 @@ import core.mapper.UserMapper;
 import core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -14,15 +15,28 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User selectByUName(String userName) {
-        User user = new User();
-        user.setUserName(userName);
-        return userMapper.selectOne(user);
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName", userName);
+
+        return userMapper.selectOneByExample(example);
+    }
+
+    @Override
+    public List selectAllStu() {
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("role", "stu");
+        return userMapper.selectByExample(example);
     }
 
     @Override
     public List selectAll(String sql) {
+
+
         return userMapper.selectAll();
     }
+
 
     @Override
     public Object select(Class c, int id) {

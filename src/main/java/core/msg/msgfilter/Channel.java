@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Channel {
+
     public static int CHAT_MESSAGE = 0;
     public static int SYSTEM_MESSAGE = 1;
     public static int ALL_CHANNEL = 2;
@@ -33,20 +34,21 @@ public class Channel {
         this.channelOpened = channelOpened;
     }
 
-    public void startChannel(PostMan postMan) throws Exception {
+    public void startChannel(PostMan postMan, int uid) throws Exception {
         if (channelOpened == 9) {
             throw new Exception("channel not open");
         }
         System.out.println("channel: " + channelOpened);
         if (channelOpened == CHAT_MESSAGE)
-            chatPostBox.deliverMsg(postMan);
+            chatPostBox.deliverMsg(postMan, uid);
         else if (channelOpened == SYSTEM_MESSAGE)
-            sysmsgPostBox.deliverMsg(postMan);
+            sysmsgPostBox.deliverMsg(postMan, uid);
         else {
             System.out.println(chatPostBox == null);
-            chatPostBox.deliverMsg(postMan);
-            sysmsgPostBox.deliverMsg(postMan);
+            chatPostBox.deliverMsg(postMan, uid);
+            sysmsgPostBox.deliverMsg(postMan, uid);
         }
+
     }
 
     public Boolean isChannelOpened(int channel) {

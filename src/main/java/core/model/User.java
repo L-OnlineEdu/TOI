@@ -16,6 +16,7 @@ import java.util.List;
 public class User {
     @Id
     @KeySql(useGeneratedKeys = true)
+    @Column(name = "uid")
     private int uid;
     private String userName;
     @Column(name = "passwd")

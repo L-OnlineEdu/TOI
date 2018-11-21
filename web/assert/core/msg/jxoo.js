@@ -1,3 +1,4 @@
+var msgfilter = 2;
 String.prototype.temp = function (obj) {
     return this.replace(/\%\w+\.?\w+?\.?\w+?\%/gi, function (matchs) {
 
@@ -55,7 +56,7 @@ $(function () {
      })*/
     //initWS()
 
-    ws = new WS(myuid, 2, function (event) {
+    ws = new WS(myuid, msgfilter, function (event) {
         var obj = eval('(' + event.data + ')');
         var objl = [];
         objl.push(obj);
@@ -1075,55 +1076,3 @@ function openGroupMessage(groupid) {
     turnMessage("g" + groupid)
 }
 
-function findQnresult(tp) {
-    $.ajax({
-        url: "/getQnRs",
-        data: {type: tp},
-        success: function (data) {
-            $.each(data.qn, function (key, val) {
-                if (tp == 2) {
-                    $("#qn1").append(
-                        "        <li class=\"collection-item\">\n" +
-                        "                    <div class=\"row\">\n" +
-                        "                        <div class=\"col s6\">\n" +
-                        "                            <p class=\"collections-title\">" + val.result + "</p>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"col s3\">\n" +
-                        "                            <span class=\"task-cat cyan\">tea1</span>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"col s3\">\n" +
-                        "                            <div class=\"project-line-1\"></div>\n" +
-                        "                        </div>\n" +
-                        "                    </div>\n" +
-                        "                </li>"
-                    )
-                } else {
-                    $("#qn2").append(
-                        "        <li class=\"collection-item\">\n" +
-                        "                    <div class=\"row\">\n" +
-                        "                        <div class=\"col s6\">\n" +
-                        "                            <p class=\"collections-title\">" + val.result + "</p>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"col s3\">\n" +
-                        "                            <span class=\"task-cat cyan\">匿名</span>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"col s3\">\n" +
-                        "                            <div class=\"project-line-1\"></div>\n" +
-                        "                        </div>\n" +
-                        "                    </div>\n" +
-                        "                </li>"
-                    )
-
-
-                }
-
-
-            })
-        },
-        error: function () {
-            console.info("失败")
-        }
-    })
-
-
-}

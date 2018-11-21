@@ -1,12 +1,11 @@
 package com.mappertest;
 
-import onlineclass.discuss.mapper.GroupMapper;
-import onlineclass.warning.mapper.WarnMapper;
+import core.mapper.UserMapper;
+import core.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
+import tk.mybatis.mapper.entity.Example;
 
 public class MapperTest1 {
     private ClassPathXmlApplicationContext context;
@@ -21,7 +20,7 @@ public class MapperTest1 {
         System.out.println(users);*/
 
         // Assert.assertEquals(183, countries.size());
-        WarnMapper warnMapper = context.getBean(WarnMapper.class);
+      /*  WarnMapper warnMapper = context.getBean(WarnMapper.class);
         //获取全部信息
         List list = warnMapper.selectAll();
         Assert.assertNotNull(list);
@@ -30,6 +29,15 @@ public class MapperTest1 {
         //获取全部信息
         List list1 = groupMapper.selectAll();
         Assert.assertNotNull(list1);
-        System.out.println(list1);
+        System.out.println(list1);*/
+        UserMapper userMapper = context.getBean(UserMapper.class);
+     /*  User user=new User();
+        user.setUserName("stu1");*/
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName", "stu1");
+        User vu = userMapper.selectOneByExample(example);
+        //User vu=userMapper.selectOneByExample(user);
+        Assert.assertNotNull(vu);
     }
 }

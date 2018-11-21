@@ -1,14 +1,13 @@
 package onlineclass.discuss.controller;
 
 import com.alibaba.fastjson.JSON;
-import core.dao.Dao;
+import core.dao.UserDao;
 import core.model.Message;
 import core.model.SystemMessage;
 import core.model.User;
 import core.msg.messager.TemporalMsgs;
 import core.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +22,7 @@ public class DiscussController {
     @Autowired
     private TemporalMsgs temporalMsgs;
     @Autowired
-    @Qualifier("daoImpl")
-    private Dao dao;
+    private UserDao dao;
     //@Autowired
     //private TemporalMsgs temporalMsgs;
  /*   讨论：提供小组讨论、单独讨论、课堂讨论、举手、教师提问功能*/
@@ -94,7 +92,8 @@ public class DiscussController {
     @RequestMapping("stuList")
     public String stuList(){
 
-        List stuList = dao.selectAll("User u where u.role='stu'");
+        List stuList = dao.selectAllStu();
+
         return JSON.toJSONString(stuList);
     }
 

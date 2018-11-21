@@ -34,6 +34,7 @@ public class PostOffice {
                 for (int uid : sendList) {
 
                     postHelper.setChannel(getChannel(uid));
+
                     postHelper.getMessageSend(msg, uid);
                 }
 
@@ -57,7 +58,8 @@ public class PostOffice {
         channel.switchChannel(channelValue);
         usersPostBoxes.put(uid, channel);
         try {
-            channel.startChannel(postMan);
+            channel.startChannel(postMan, uid);
+
 
         } catch (Exception e) {
             e.printStackTrace();

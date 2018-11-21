@@ -23,16 +23,18 @@ import java.util.concurrent.ConcurrentMap;
 @ServerEndpoint(value = "/ws/{fromUserId}/{channel}", configurator = SpringConfigurator.class)
 public class WebSocketServer {
     // 已经建立链接的对象缓存起来
-    private static ConcurrentMap<Integer, WebSocketServer> serverMap = new ConcurrentHashMap<Integer, WebSocketServer>();
+    private static ConcurrentMap<Integer, Session> serverMap = new ConcurrentHashMap<Integer, Session>();
     // 当前session
-    private Session currentSession;
+    // private Session currentSession;
     @Autowired
     private PostOffice postOffice;
 
     @OnOpen
     public void onOpen(Session session, @PathParam("fromUserId") int fromUserId, @PathParam("channel") int channel) throws IOException {
-        this.currentSession = session;
-        serverMap.put(fromUserId, this);//建立链接时，缓存对象
+        //this.currentSession = session;
+//        int fuid=Utils.getUser().getUid();
+        serverMap.put(fromUserId, session);//建立链接时，缓存对象
+        System.out.println("f:" + fromUserId);
         postOffice.userReceiveMessage(fromUserId, channel);
     }
 
@@ -41,8 +43,7 @@ public class WebSocketServer {
         System.out.println(reason.toString());
         if (serverMap.containsValue(this)) {
             Iterator<Integer> keys = serverMap.keySet().iterator();
-            int userId = 0;
-            int uid = Utils.getUser().getUid();
+            int userId = Utils.getUser().getUid();
             postOffice.userLeave(userId);
             while (keys.hasNext()) {
                 userId = keys.next();
@@ -51,7 +52,7 @@ public class WebSocketServer {
                 }
             }
         }
-        this.currentSession = null;
+        //this.currentSession = null;
         try {
             session.close();
         } catch (IOException e) {
@@ -66,11 +67,11 @@ public class WebSocketServer {
         int fromUserId = Integer.parseInt(map.get("fromUserId"));
         int toUserId = Integer.parseInt(map.get("toUserId"));
         String content = map.get("content").toString();
-        WebSocketServer server = serverMap.get(toUserId);//若存在则用户在线，否在用户不在线
-        if (server != null && server.currentSession.isOpen()) {
+        Session session = serverMap.get(toUserId);//若存在则用户在线，否在用户不在线
+        if (session != null && session.isOpen()) {
             if (fromUserId != toUserId) {
                 try {
-                    server.currentSession.getBasicRemote().sendText(content);
+                    session.getBasicRemote().sendText(content);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -83,11 +84,11 @@ public class WebSocketServer {
         int fromUserId = message.getSender().getUid();
         int toUserId = uid;
         String content = JSON.toJSONString(message);
-        WebSocketServer server = serverMap.get(toUserId);//若存在则用户在线，否在用户不在线
-        if (server != null && server.currentSession.isOpen()) {
+        Session session = serverMap.get(toUserId);//若存在则用户在线，否在用户不在线
+        if (session != null && session.isOpen()) {
             // if (fromUserId != toUserId) {
                 try {
-                    server.currentSession.getBasicRemote().sendText(content);
+                    session.getBasicRemote().sendText(content);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
