@@ -18,9 +18,11 @@ public class PostBoxImp implements PostBox {
     }
 
     @Override
-    public void deliverMsg(PostMan man) {
+    public void deliverMsg(PostMan man, int uid) {
         for (Message m : msgList) {
-            man.sendMessagesToUser(m);
+            man.sendMessagesToUser(m, uid);
         }
+        msgList.clear();
     }
+
 }

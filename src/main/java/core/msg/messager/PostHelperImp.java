@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class PostHelperImp implements PostHelper {
     @Autowired
     private PostMan postMan;
+
     private Channel userChannel;
 
 
@@ -21,6 +22,7 @@ public class PostHelperImp implements PostHelper {
     private void callPostManForHelp(Message message, int uid) {
 
         postMan.sendMessagesToUser(message, uid);
+        //putMessagesToPostBox(message,uid);
     }
 
 

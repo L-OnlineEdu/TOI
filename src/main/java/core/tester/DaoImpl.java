@@ -2,12 +2,11 @@ package core.tester;
 
 import core.dao.Dao;
 import core.model.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+
 public class DaoImpl implements Dao {
     @Override
     public List selectAll(String sql) {

@@ -2,11 +2,10 @@ package core.tester;
 
 import core.dao.UserDao;
 import core.model.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public class UserDaoImpl implements UserDao {
     @Override
     public User selectByUName(String userName) {
@@ -17,6 +16,11 @@ public class UserDaoImpl implements UserDao {
         tester.setRole("tea");
 
         return tester;
+    }
+
+    @Override
+    public List selectAllStu() {
+        return selectAll("");
     }
 
     @Override
