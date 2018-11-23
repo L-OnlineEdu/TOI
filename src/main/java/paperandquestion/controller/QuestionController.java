@@ -2,11 +2,13 @@ package paperandquestion.controller;
 
 
 import com.google.gson.Gson;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import paperandquestion.model.Question;
 import paperandquestion.services.QuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 
 @RestController("questionController")
 //@Scope("prototype")
@@ -43,7 +45,7 @@ public class QuestionController {
         Question question = questionService.getQuestion(Integer.parseInt(questionid));
         question.setAnswer(answer);
         question.setRightAnswer(rightAnswer);
-        question.setTitle(rightAnswer);
+        question.setTitle(title);
         question.setType(1);
         questionService.updateQuestion(question);
         return  "success";
