@@ -227,7 +227,7 @@ function de(qu) {
         url: "/tea/deleteQuestion",
         data: {"questionid": qu},
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+            //setTimeout("location.reload();", 500)
             // findpaper()
         }
 
@@ -269,7 +269,7 @@ $("#editTrue").click(function () {
         url: "/tea/updateQuestion",
         data: {"questionid": questionid, "rightAnswer": rightAnswer, "title": title, "answer": answer},
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+            //setTimeout("location.reload();", 3000)
             // findpaper()
         }
 
@@ -296,7 +296,7 @@ $(".editorPaperContext").blur(function () {
         url: "/tea/updatePaper",
         data: {"pid": pid, "ptime": ptime, "pcontext": pcontext},
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+            //setTimeout("location.reload();", 3000)
         }
 
     })
@@ -316,7 +316,7 @@ $(".editorPaperTime").blur(function () {
         success: function (data) {
             $(".editorPaperTime").hide();
             $(".PaperTime").show();
-            setTimeout("location.reload();", 3000)
+            //setTimeout("location.reload();", 3000)
         }
 
     })
@@ -357,7 +357,7 @@ $(".delPaper").click(function () {
                         type: "success",
                         showConfirmButton: false
                     });
-                    setTimeout("location.reload();", 3000)
+                    //setTimeout("location.reload();", 3000)
                 },
                 error: function () {
                     swal("失败", "检查是否登录", "error");
@@ -391,7 +391,7 @@ $("#addPaperTrue").click(function () {
         data: {"pname": pname, "pcontext": pcontext, "ptime": ptime, "questionList": str},
         dataType: "json",
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+            //setTimeout("location.reload();", 1000)
         }
 
     })
