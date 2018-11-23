@@ -11,4 +11,6 @@ public interface PaperService {
     Paper getPaper(Integer pid);
     int addPaper(Paper paper);
     int deletePaper(Paper paper);
+
+    int findPaperId();
 }
