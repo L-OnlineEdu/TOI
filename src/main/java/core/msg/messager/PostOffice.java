@@ -129,4 +129,8 @@ public class PostOffice {
         usersPostBoxes.remove(uid);
     }
 
+    public int getOnlineNums() {
+        return postMan.getOnlineNums();
+    }
+
 }

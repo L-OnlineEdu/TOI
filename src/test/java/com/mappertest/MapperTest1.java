@@ -1,11 +1,12 @@
 package com.mappertest;
 
-import core.mapper.UserMapper;
-import core.model.User;
+import onlineclass.exam.mapper.ExamMapper;
+import onlineclass.exam.mapper.ScoreMapper;
+import onlineclass.exam.model.Exam;
+import onlineclass.exam.model.Score;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import tk.mybatis.mapper.entity.Example;
 
 public class MapperTest1 {
     private ClassPathXmlApplicationContext context;
@@ -30,14 +31,30 @@ public class MapperTest1 {
         List list1 = groupMapper.selectAll();
         Assert.assertNotNull(list1);
         System.out.println(list1);*/
-        UserMapper userMapper = context.getBean(UserMapper.class);
-     /*  User user=new User();
-        user.setUserName("stu1");*/
+      /*  UserMapper userMapper = context.getBean(UserMapper.class);
+     *//*  User user=new User();
+        user.setUserName("stu1");*//*
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("userName", "stu1");
         User vu = userMapper.selectOneByExample(example);
         //User vu=userMapper.selectOneByExample(user);
-        Assert.assertNotNull(vu);
+        Assert.assertNotNull(vu);*/
+
+
+        ExamMapper examMapper = context.getBean(ExamMapper.class);
+        Exam exam = examMapper.getLastExam();
+        Assert.assertNotNull(exam);
+        System.out.println(exam);
+    }
+
+    @Test
+    public void testScoreMapper() {
+        context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        ScoreMapper scoreMapper = context.getBean(ScoreMapper.class);
+        Score score = scoreMapper.finduserLastScore(1);
+        //Assert.assertNotNull(score);
+        System.out.println(score);
     }
 }

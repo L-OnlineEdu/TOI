@@ -1,21 +1,15 @@
 package paperandquestion.dao;
 
-import org.springframework.stereotype.Repository;
 import paperandquestion.model.Paper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface PaperDao {
-    Paper getPaper(Integer pid);
-
-    int addPaper(Paper paper);
-
-    int updatePaper(Paper paper);
-
-    int deletePaper(Paper paper);
-
-    List<Paper> findAllPaper();
-
-    int findPaperId();
+    public Paper getPaper(Integer pid);
+    public int addPaper(Paper paper);
+    public int updatePaper(Paper paper);
+    public int deletePaper(Paper paper);
+    public List<Paper> findAllPaper();
 }
