@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="no" name="msapplication-tap-highlight">
+    <meta content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. "
+          name="description">
+    <meta content="materialize, admin template, dashboard template, flat admin template, responsive admin template,"
+          name="keywords">
+    <title>Materialize - Material Design Admin Template</title>
+
+    <!-- Favicons-->
+    <link href="images/favicon/favicon-32x32.png" rel="icon" sizes="32x32">
+    <!-- Favicons-->
+    <link href="images/favicon/apple-touch-icon-152x152.png" rel="apple-touch-icon-precomposed">
+    <!-- For iPhone -->
+    <meta content="#00bcd4" name="msapplication-TileColor">
+    <meta content="images/favicon/mstile-144x144.png" name="msapplication-TileImage">
+    <!-- For Windows Phone -->
+
+
+    <!-- CORE CSS-->
+    <link href="css/materialize.css" media="screen,projection" rel="stylesheet" type="text/css">
+    <link href="css/style.css" media="screen,projection" rel="stylesheet" type="text/css">
+
+
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <link href="css/perfect-scrollbar.css" media="screen,projection" rel="stylesheet" type="text/css">
+    <link href="css/jquery-jvectormap.css" media="screen,projection" rel="stylesheet" type="text/css">
+    <link href="css/chartist.min.css" media="screen,projection" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START HEADER -->
+<header class="page-topbar" id="header">
+    <!-- start header nav-->
+    <div class="navbar-fixed">
+        <nav class="cyan">
+            <div class="nav-wrapper">
+                <h1 class="logo-wrapper">
+                    <a class="brand-logo darken-1" href="ssqn.html">
+                        <img alt="materialize logo" src="img/materialize-logo.png">
+                    </a>
+                    <span class="logo-text">Materialize</span>
+                </h1>
+                <ul class="right hide-on-med-and-down">
+
+                    <li>
+                        <a class="waves-effect waves-block waves-light" href="javascript:void(0);">
+                            <i class="mdi-maps-local-library" style="margin-top:-7px;margin-bottom:-14px"></i>
+                            <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a class="waves-effect waves-block waves-light" href="javascript:void(0);">
+                            <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
+                            <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a class="modal-trigger waves-effect waves-block waves-light" href="#modal1">评教</a>
+                    </li>
+                    <li>
+                        <div class="row" style="width:150px;margin-bottom:-10px;">
+                            <div class="col col s4 m4 l4" style="padding-top:10px;">
+                                <img alt="" class="circle responsive-img valign " src="img/avatar.jpg">
+                            </div>
+                            <div class="col col s1 m1 l1" style="margin-left:-20px;">
+                                <ul class="dropdown-content" id="profile-dropdown" style="width:20px;">
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi-action-face-unlock"></i> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi-action-settings"></i> Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi-communication-live-help"></i> Help</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi-action-lock-outline"></i> Lock</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi-hardware-keyboard-tab"></i> Logout</a>
+                                    </li>
+                                </ul>
+
+                                <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn"
+                                   data-activates="profile-dropdown" href="#" style="width:200px;">
+                                    John ▼
+                                </a>
+
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+    </div>
+    <!-- end header nav-->
+</header>
+
+
+<!-- END HEADER -->
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START MAIN -->
+
+<!-- Modal Trigger -->
+
+
+<!-- Modal Structure -->
+<div class="modal modal-fixed-footer" id="modal1" style="height:250px">
+    <div class="modal-content">
+        <h4>评教选择</h4>
+        <iframe id="ifm" src="../../WEB-INF/view/qn/index.jsp" style="border: #FFFFFF; height: 100px"></iframe>
+    </div>
+
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat " href="#!" id="a1">关闭</a>
+        <a class=" waves-effect waves-green btn-flat " href="#!" onclick="sendM()">确定</a>
+    </div>
+</div>
+
+
+<!-- END MAIN -->
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START FOOTER -->
+
+<!-- END FOOTER -->
+
+
+<!-- ================================================
+Scripts
+================================================ -->
+
+
+<!-- jQuery Library -->
+<script src="js/jquery-1.10.2.js"></script>
+<!--materialize js-->
+<script src="js/materialize.min.js" type="text/javascript"></script>
+<!--scrollbar-->
+<script src="js/perfect-scrollbar.min.js" type="text/javascript"></script>
+<!-- chartist -->
+<script src="js/chartist.min.js" type="text/javascript"></script>
+<!-- sparkline -->
+<script src="js/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="js/sparkline-script.js" type="text/javascript"></script>
+<!--jvectormap-->
+<script src="js/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+<script src="js/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+<script src="js/vectormap-script.js" type="text/javascript"></script>
+<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+<script src="js/plugins.js" type="text/javascript"></script>
+<!-- Toast Notification -->
+<script type="text/javascript">
+    // Toast Notification
+</script>
+<script src="js/Paper.js" type="text/javascript"></script>
+</body>
+
+</html>
