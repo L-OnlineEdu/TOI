@@ -26,7 +26,7 @@ function refreshWarnInfo() {
                 ss = "";
                 $.each(data.warnList, function (k, v) {
                     ss += "<tr><td>" + v.student.userName + "</td><td>" + v.warnMessage + "</td><td>" + v.pointsOff + "</td><td>" + v.teacher.userName + "</td>" +
-                        "<td><a href='#' onclick='undoWarn(\"" + v.student.userName + "\",\"" + v.id + "\")'><i class='mdi-action-delete'></i></a></td></tr>"
+                        "<td><a href='#' onclick='undoWarn(\"" + v.student.userName + "\",\"" + v.id + "\")'><i class='mdi-action-delete'></i></a>" + "<a href='#' onclick='editWarn(\"" + v.pointsOff + "\",\"" + v.warnMessage + "\",\"" + v.student.uid + "\",\"" + v.id + "\")'><i class='mdi-editor-mode-edit'></i></a></td></tr>"
                 });
                 $("#warndetils").html(ss)
 
@@ -125,7 +125,129 @@ function undoWarn(stuN, warnId) {
         });
 }
 
+function editWarn(pointsoff, warnMessage, beWarnedId, warnId) {
+    //console.info(v)
+    $("#viewwarn").closeModal();
+    // studentUid = x; //$(x).parent().attr("id").substr(4)
+
+    swal({
+        title: "修改警告信息!",
+        text: "扣分数 <input type='text' class='wann' id='apointe' value='" + pointsoff + "'>"
+        + "原因 <input type='text' class='wann'  id='areasone' value='" + warnMessage + "'><div id='watip' class=\"sa-error-container\">" +
+        "      <div class=\"icon\">!</div>\n" +
+        "      <p>输入警告信息</p>" +
+        "    </div>",
+        html: true,
+        type: "prompt",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showCancelButton: true
+
+    }, function () {
+        points = $("#apointe").val();
+        warnReason = $("#areasone").val();
+        tt = /^[0-9]\d*$/;
+        if (!tt.test(points) || warnReason == "") {
+            $("#watip").addClass("show");
+            $(".wann").focus(function () {
+                $(".sa-error-container").removeClass("show")
+            })
+        } else {
+
+            editWarns(warnId, beWarnedId, points, warnReason);
+
+
+            swal({
+                title: "成功",
+                text: "警告修改成功",
+                timer: 800,
+                type: "success",
+                showConfirmButton: false
+            });
+        }
+
+
+    })
+
+}
 function addWarn() {
     $("#viewwarn").closeModal();
     $("#slstu").openModal()
+}
+
+
+function warnx(x) {
+    studentUid = x; //$(x).parent().attr("id").substr(4)
+
+    swal({
+        title: "请输入警告信息!",
+        text: "扣分数 <input type='text' class='wann' id='apoint'>"
+        + "原因 <input type='text' class='wann'  id='areason'><div id='watip' class=\"sa-error-container\">" +
+        "      <div class=\"icon\">!</div>\n" +
+        "      <p>输入警告信息</p>" +
+        "    </div>",
+        html: true,
+        type: "prompt",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showCancelButton: true
+
+    }, function () {
+        points = $("#apoint").val();
+        warnReason = $("#areason").val();
+        tt = /^[0-9]\d*$/;
+        if (!tt.test(points) || warnReason == "") {
+            $("#watip").addClass("show");
+            $(".wann").focus(function () {
+                $(".sa-error-container").removeClass("show")
+            })
+        } else {
+
+            sendWarns(studentUid, points, warnReason);
+
+            swal({
+                title: "成功",
+                text: "成功警告该学生",
+                timer: 800,
+                type: "success",
+                showConfirmButton: false
+            });
+        }
+
+
+    })
+
+
+    /* });*/
+}
+
+function sendWarns(uid, marks, warnReason) {
+    $.ajax({
+        url: "/warn",
+        data: {"beWarned": uid, "punish": marks, "reason": warnReason},
+        success: function (data) {
+            if (data.msg != "success") {
+                console.info("fail")
+            }
+        },
+        error: function () {
+            console.info("失败")
+        }
+    })
+}
+
+function editWarns(wid, uid, marks, warnReason) {
+    $.ajax({
+
+        url: "/editwarn",
+        data: {"wid": wid, "beWarned": uid, "punish": marks, "reason": warnReason},
+        success: function (data) {
+            if (data.msg != "success") {
+                console.info("fail")
+            }
+        },
+        error: function () {
+            console.info("失败")
+        }
+    })
 }

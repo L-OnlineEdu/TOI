@@ -5,4 +5,6 @@ import onlineclass.exam.model.Exam;
 
 public interface ExamDao extends Dao {
     Exam getLastExam();
+
+    Exam isThereBeExams(int uid);
 }
