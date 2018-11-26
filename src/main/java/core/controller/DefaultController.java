@@ -10,13 +10,18 @@ public class DefaultController {
         return "/core/login";
     }
 
-    @RequestMapping("/tea/two")
+  /*  @RequestMapping("/tea/two")
     public String two() {
         return "/tea/two";
-    }
+    }*/
 
     @RequestMapping("/tea/home")
     public String teahome() {
-        return "tea/home";
+        return "tea/two";
+    }
+
+    @RequestMapping("/stu/home")
+    public String stuhome() {
+        return "stu/stuhome";
     }
 }

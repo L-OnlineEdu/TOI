@@ -9,4 +9,6 @@ public interface UserDao extends Dao {
 
     List selectAllStu();
 
+    List selectAllTea();
+
 }

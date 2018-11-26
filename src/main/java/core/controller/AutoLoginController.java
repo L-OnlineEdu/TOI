@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 public class AutoLoginController {
-    @RequestMapping("/core/autologin")
+    @RequestMapping("/autologin")
     public Map autoLogin(String token) {
 
         User user = Utils.getUser(token);

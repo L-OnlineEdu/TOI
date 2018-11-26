@@ -1,8 +1,10 @@
 package com.mappertest;
 
+import core.dao.GroupDao;
 import core.dao.UserDao;
 import core.dao.UserDaoImp;
 import core.model.User;
+import onlineclass.discuss.model.Group;
 import onlineclass.warning.dao.WarnDao;
 import onlineclass.warning.model.Warn;
 import org.junit.Assert;
@@ -33,5 +35,18 @@ public class DaoTest {
         user.setUid(3);
         warn.setTeacher(user);
         dao.add(warn);
+    }
+
+    @Test
+    public void testGroupDao() {
+        context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        GroupDao groupDao = context.getBean(GroupDao.class);
+        Group group = groupDao.selectOnGroup(1);
+        // List usss=groupDao.selectUserInOneGroup(1);
+        System.out.println(group);
+        Assert.assertNotNull(group);
+      /*  Group group= (Group) groupDao.select(Group.class,1);
+        System.out.println(group);
+        Assert.assertNotNull(group);*/
     }
 }

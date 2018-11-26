@@ -1,5 +1,7 @@
 package com.mappertest;
 
+import onlineclass.discuss.mapper.GroupMapper;
+import onlineclass.discuss.model.Group;
 import onlineclass.exam.mapper.ExamMapper;
 import onlineclass.exam.mapper.ScoreMapper;
 import onlineclass.exam.model.Exam;
@@ -56,5 +58,14 @@ public class MapperTest1 {
         Score score = scoreMapper.finduserLastScore(1);
         //Assert.assertNotNull(score);
         System.out.println(score);
+    }
+
+    @Test
+    public void groupMapperTest() {
+        context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        GroupMapper groupMapper = context.getBean(GroupMapper.class);
+        Group list = groupMapper.selectOneGroup(1);
+        Assert.assertNotNull(list);
+        System.out.println(list);
     }
 }

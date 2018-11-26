@@ -92,15 +92,17 @@ public class PostOffice {
                     System.err.println("receiveId不能为0");*/
                 break;
             case Message.MessageType_GroupMsg:
-                if (message.getReceiveId() != 0)
-                    list.add(messageServices.getUserIdInGroup(message.getReceiveId()));
+                if (message.getReceiveId() != 0) {
+                    list.addAll(messageServices.getUserIdInGroup(message.getReceiveId()));
+
+                }
                 else
                     throw new Exception("receiveId不能为0");
                 break;
             case Message.MessageType_SystemMsg:
                 int receiveId = message.getReceiveId();
                 if (receiveId == 0) {
-                    list.add(messageServices.getAllUserId());
+                    list.addAll(messageServices.getAllUserId());
                 } else {
                     list.add(receiveId);
                 }
