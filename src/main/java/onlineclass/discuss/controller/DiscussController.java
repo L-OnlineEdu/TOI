@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Scope("prototype")
@@ -90,11 +92,12 @@ public class DiscussController {
     //学生列表
 
     @RequestMapping("stuList")
-    public String stuList(){
+    public Map stuList() {
 
         List stuList = dao.selectAllStu();
-
-        return JSON.toJSONString(stuList);
+        Map map = new HashMap();
+        map.put("stuList", stuList);
+        return map;
     }
 
 

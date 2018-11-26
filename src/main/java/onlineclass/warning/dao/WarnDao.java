@@ -14,8 +14,8 @@ public class WarnDao implements Dao {
     WarnMapper warnMapper;
 
     @Override
-    public List selectAll() {
-        return warnMapper.selectAll();
+    public List selectAll(String sql) {
+        return warnMapper.findAllWarn();
     }
 
     @Override
@@ -25,11 +25,19 @@ public class WarnDao implements Dao {
 
     @Override
     public void add(Object object) {
-        warnMapper.insert((Warn) object);
+        warnMapper.addWarn((Warn) object);
     }
 
     @Override
     public void del(Object x) {
         warnMapper.delete((Warn) x);
+    }
+
+    public List findStuWarning(int uid) {
+        return warnMapper.findStuWarning(uid);
+    }
+
+    public void update(Warn warn) {
+        warnMapper.updateByPrimaryKey(warn);
     }
 }

@@ -20,6 +20,7 @@ public class Warn {
     private User teacher;
     private User student;
     private String warnMessage;
+    @Column(name = "points")
     private int pointsOff;
 
     public int getId() {

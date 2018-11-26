@@ -37,4 +37,5 @@ public class Utils {
         HttpServletRequest httpRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return (User) httpRequest.getSession().getAttribute("user");
     }
+
 }

@@ -545,7 +545,7 @@
     })
 </script>
 <script src="/utils/swx/sweetalert-dev.js"></script>
-<script src="/stu/stuh.js"></script>
+<script src="/assert/stu/stuh.js"></script>
 <!--materialize js-->
 <script type="text/javascript" src="/utils/js/materialize.min.js"></script>
 <script src="/utils/alert/js/alert.js"></script>

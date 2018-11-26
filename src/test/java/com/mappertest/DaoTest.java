@@ -1,16 +1,13 @@
 package com.mappertest;
 
-import assessment.assess.dao.CommentDao;
-import assessment.assess.dao.CommentDaoImp;
-import assessment.assess.model.Comment;
 import core.dao.UserDao;
 import core.dao.UserDaoImp;
 import core.model.User;
+import onlineclass.warning.dao.WarnDao;
+import onlineclass.warning.model.Warn;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
 
 public class DaoTest {
     private ClassPathXmlApplicationContext context;
@@ -25,11 +22,16 @@ public class DaoTest {
     }
 
     @Test
-    public void test2() {
+    public void testAddWarn() {
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        CommentDao comDao = context.getBean(CommentDaoImp.class);
-        List<Comment> c = comDao.selectByTypeAndRuid(1, 6);
-        System.out.println(c);
-        Assert.assertNotNull(c);
+        WarnDao dao = context.getBean(WarnDao.class);
+        Warn warn = new Warn();
+        warn.setPointsOff(1);
+        User user = new User();
+        user.setUid(1);
+        warn.setStudent(user);
+        user.setUid(3);
+        warn.setTeacher(user);
+        dao.add(warn);
     }
 }

@@ -1,11 +1,11 @@
 package onlineclass.warning.controller;
 
 import com.alibaba.fastjson.JSON;
-import core.dao.Dao;
 import core.model.SystemMessage;
 import core.model.User;
 import core.msg.messager.TemporalMsgs;
 import core.utils.Utils;
+import onlineclass.warning.dao.WarnDao;
 import onlineclass.warning.model.Warn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +19,6 @@ import java.util.Map;
 
 @RestController
 @Scope("prototype")
-
 public class WarnController {
 
     @Autowired
@@ -27,7 +26,7 @@ public class WarnController {
     //TO DO
     @Autowired
     @Qualifier("warnDao")
-    private Dao dao;
+    private WarnDao dao;
 
     @RequestMapping("warn")
     public String warn(int punish, int beWarned, String reason) {
@@ -37,13 +36,37 @@ public class WarnController {
 
             Warn warn = new Warn();
             warn.setTeacher(teacher);
-            warn.setStudent((User) dao.select(User.class, beWarned));
+            User student = new User();
+            student.setUid(beWarned);
+            warn.setStudent(student);
             warn.setPointsOff(punish);
             warn.setWarnMessage(reason);
             dao.add(warn);
             systemMessage.setMessage("收到了来自" + teacher.getUserName() + "的警告并扣除了" + punish + "分" + "(警告原因:" + reason + ")");
         } else {
             systemMessage.setMessage("收到了来自" + teacher.getUserName() + "的警告" + "(警告原因:" + reason + ")");
+        }
+        temporalMsgs.sendMessage(systemMessage);
+        String msg = "success";
+        return JSON.toJSONString(msg);
+    }
+
+
+    @RequestMapping("editwarn")
+    public String editwarn(int wid, int punish, int beWarned, String reason) {
+        System.out.println(punish);
+        User teacher = Utils.getUser();
+        SystemMessage systemMessage = new SystemMessage(SystemMessage.SystemMessageType_Warn, teacher, beWarned, reason);
+        if (punish > 0) {
+
+            Warn warn = new Warn();
+            warn.setId(wid);
+            warn.setPointsOff(punish);
+            warn.setWarnMessage(reason);
+            dao.update(warn);
+            systemMessage.setMessage("警告修改通知：" + teacher.getUserName() + " 扣除了" + punish + "分" + "(警告原因:" + reason + ")");
+        } else {
+            systemMessage.setMessage("警告修改通知：" + teacher.getUserName() + "警告了您" + "(警告原因:" + reason + ")");
         }
         temporalMsgs.sendMessage(systemMessage);
         String msg = "success";

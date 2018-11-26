@@ -12,7 +12,6 @@
     <!-- scan the package and the sub package -->
     <context:component-scan base-package="core.controller"/>
     <context:component-scan base-package="*.*.controller"/>
-
     <context:component-scan base-package="core.msg.**"/>
     <context:component-scan base-package="core.dao"/>
     <context:component-scan base-package="onlineclass.*.dao"/>
