@@ -20,7 +20,7 @@ public class UserDaoMock implements UserDao {
 
     @Override
     public List selectAllStu() {
-        return selectAll("");
+        return selectAll();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
-    public List selectAll(String sql) {
+    public List selectAll() {
         return null;
     }
 

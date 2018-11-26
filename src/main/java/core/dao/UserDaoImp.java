@@ -39,7 +39,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List selectAll(String sql) {
+    public List selectAll() {
 
 
         return userMapper.selectAll();
