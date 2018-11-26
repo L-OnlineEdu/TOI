@@ -161,7 +161,7 @@
                 <div class="card-content">
                     <img src="/utils/ava/${user.uid}.jpg" alt=""
                          class="circle responsive-img activator card-profile-image">
-                    <a href="/qn/question.html?flag=a&&rid=0&&type=0"
+                    <a href="/utils/temp/question.html?flag=a&&rid=0&&type=0"
                        class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
                         <i class="mdi-editor-mode-edit"></i>
                     </a>

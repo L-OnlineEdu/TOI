@@ -227,7 +227,10 @@ function de(qu) {
         url: "/tea/deleteQuestion",
         data: {"questionid": qu},
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+            if (confirm("删除成功")) {
+                location.reload()
+            }
+            //setTimeout("location.reload();", 500)
             // findpaper()
         }
 
@@ -269,7 +272,10 @@ $("#editTrue").click(function () {
         url: "/tea/updateQuestion",
         data: {"questionid": questionid, "rightAnswer": rightAnswer, "title": title, "answer": answer},
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+            if (confirm("更新成功")) {
+                location.reload()
+            }
+            //setTimeout("location.reload();", 3000)
             // findpaper()
         }
 
@@ -296,14 +302,20 @@ $(".editorPaperContext").blur(function () {
         url: "/tea/updatePaper",
         data: {"pid": pid, "ptime": ptime, "pcontext": pcontext},
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+
+            if (confirm("更新成功")) {
+                location.reload()
+            }
+            //location.reload()
+            //setTimeout("location.reload();", 3000)
         }
 
     })
 });
 
 $(".editorPaperTime").blur(function () {
-
+    $(".editorPaperTime").hide();
+    $(".PaperTime").show();
     var pid = pushid;
     var pcontext = $(".editorPaperContext").val();
     var ptime = $(".editorPaperTime").val();
@@ -314,9 +326,12 @@ $(".editorPaperTime").blur(function () {
         data: {"pid": pid, "ptime": ptime, "pcontext": pcontext},
         dataType: "json",
         success: function (data) {
-            $(".editorPaperTime").hide();
-            $(".PaperTime").show();
-            setTimeout("location.reload();", 3000)
+            //$(".editorPaperTime").hide();
+            //$(".PaperTime").show();
+            if (confirm("更新成功")) {
+                location.reload()
+            }
+            //setTimeout("location.reload();", 3000)
         }
 
     })
@@ -389,10 +404,17 @@ $("#addPaperTrue").click(function () {
         url: "/tea/addPaper",
         type: "POST",
         data: {"pname": pname, "pcontext": pcontext, "ptime": ptime, "questionList": str},
-        dataType: "json",
+        //dataType: "json",
         success: function (data) {
-            setTimeout("location.reload();", 3000)
+            if (confirm("添加成功")) {
+                location.reload()
+            }
+            //setTimeout("location.reload();", 1000)
+        },
+        eror: function () {
+            alert("dsadsad")
         }
+
 
     })
 });

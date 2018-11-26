@@ -1,10 +1,9 @@
 package paperandquestion.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import paperandquestion.dao.PaperDao;
 import paperandquestion.model.Paper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -46,5 +45,10 @@ public class PaperServiceImpl implements PaperService  {
     @Override
     public int deletePaper(Paper paper) {
         return paperDao.deletePaper(paper);
+    }
+
+    @Override
+    public int findPaperId() {
+        return paperDao.findPaperId();
     }
 }

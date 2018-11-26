@@ -27,4 +27,8 @@
     <select id="findAllPaper"  resultMap="paperList">
         SELECT * FROM paper
     </select>
+
+    <select id="findPaperId" resultType="int">
+        SELECT MAX(pid) FROM paper;
+    </select>
 </mapper>

@@ -1070,7 +1070,7 @@ function openGroupMessage(groupid) {
 
 function findQnresult(tp) {
     $.ajax({
-        url: "/getQnRs",
+        url: "/ass/getQnRs",
         data: {type: tp},
         success: function (data) {
             $.each(data.qn, function (key, val) {

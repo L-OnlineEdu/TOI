@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": "5",
+      "deptname": "第一组",
+      "children": [
+        {
+          "id": "1",
+          "deptname": "stu1",
+          "children": []
+        },
+        {
+          "id": "2",
+          "deptname": "stu2",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "deptname": "第二组",
+      "children": [
+        {
+          "id": "6",
+          "deptname": "stu4",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

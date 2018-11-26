@@ -17,4 +17,7 @@ public interface PaperDao {
 
     List<Paper> findAllPaper();
 
+
+    int findPaperId();
+
 }
