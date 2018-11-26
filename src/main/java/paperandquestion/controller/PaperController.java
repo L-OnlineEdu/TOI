@@ -68,15 +68,7 @@ public class PaperController {
     @RequestMapping(value = "tea/deletePaper", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String deletePaper(@RequestParam String pid) {
-        Paper paper = paperService.getPaper(Integer.parseInt(pid));
-        List<Question> questionList = questionService.findAllQuestion(Integer.parseInt(pid));
-        //System.out.println("dsssssssssssssssssssssssssssssssss"+questionList.size());
-        for (int i = 0; i < questionList.size(); i++) {
-            Question question = questionList.get(i);
-            question.setPid(1);
-            questionService.updateQuestion(question);
-        }
-        paperService.deletePaper(paper);
+
         return "success";
     }
 
@@ -89,7 +81,7 @@ public class PaperController {
         paper.setPcontext(pcontexte);
         paperService.addPaper(paper);
 
-        int pid = paperService.findPaperId();
+        int pid = paper.getPid();
         System.out.println("ertyuiortyui   " + pid);/*
         JSONArray jsonArray = JSONArray.fromObject(questionList);
         List<String> list2 =JSONArray.toList(jsonArray);*/
@@ -102,7 +94,7 @@ public class PaperController {
         for (int i = 0; i < list2.size(); i++) {
             int a = Integer.parseInt(list2.get(i));
             Question question = questionService.getQuestion(a);
-            question.setPid(pid);
+            question.setPid(paper.getPid());
             questionService.updateQuestion(question);
 
         }

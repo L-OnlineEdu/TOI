@@ -45,7 +45,7 @@ public class QuestionController {
         Question question = questionService.getQuestion(Integer.parseInt(questionid));
         question.setAnswer(answer);
         question.setRightAnswer(rightAnswer);
-        question.setTitle(title);
+        question.setTitle(rightAnswer);
         question.setType(1);
         questionService.updateQuestion(question);
         return  "success";

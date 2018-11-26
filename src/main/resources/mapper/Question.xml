@@ -8,14 +8,16 @@
         SELECT questionid,title,answer,rightAnswer,pid FROM question WHERE questionid = #{questionid}
     </select>
 
-
     <insert id="addQuestion" parameterType="paperandquestion.model.Question">
         INSERT INTO question(title,answer,rightAnswer,pid) VALUES (#{title},#{answer},#{rightAnswer},#{pid})
     </insert>
 
    <update id="updateQuestion" parameterType="paperandquestion.model.Question">
-       UPDATE question SET title = #{title},answer = #{answer},rightAnswer = #{rightAnswer},pid = #{pid} WHERE
-       questionid = #{questionid}
+       UPDATE question
+       SET title       = #{title},
+           answer      = #{answer},
+           rightAnswer = #{rightAnswer}
+       WHERE questionid = #{questionid}
     </update>
 
     <delete id="deleteQuestion">
