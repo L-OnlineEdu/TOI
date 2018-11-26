@@ -16,13 +16,20 @@
     <context:component-scan base-package="core.dao"/>
     <context:component-scan base-package="onlineclass.*.dao"/>
     <context:component-scan base-package="core.services"/>
-    <context:component-scan base-package="core.tester"/>
     <!-- don't handle the static resource -->
     <mvc:default-servlet-handler/>
 
     <!-- if you use annotation you must configure following setting -->
     <mvc:annotation-driven/>
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/"/>
+            <mvc:mapping path="/stu/*"/> <!-- 拦截路径 -->
+            <mvc:mapping path="/tea/*"/> <!-- 拦截路径 -->
+            <mvc:exclude-mapping path="/login"/><!-- 排除的拦截路径 -->
+            <bean class="core.utils.LoginedInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!-- configure the InternalResourceViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           id="internalResourceViewResolver">
