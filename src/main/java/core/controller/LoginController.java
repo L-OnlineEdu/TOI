@@ -3,11 +3,11 @@ package core.controller;
 import core.dao.UserDao;
 import core.model.User;
 import core.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 @Controller
@@ -17,7 +17,7 @@ public class LoginController {
     private Map infoMap;
     //private Boolean courseFlag;
 
-    @Resource(name = "userDaoImp")
+    @Autowired
     private UserDao userDao;
 
 
@@ -25,7 +25,7 @@ public class LoginController {
     public ModelAndView login(String userName, String passWd) {
         String SUCCESS = "redirect:/tea/home";
         String ERROR = "core/login";
-        String STU = "stu/stuhome";
+        String STU = "redirect:/stu/home";
         ModelAndView modelAndView = new ModelAndView();
         //  courseFlag = Utils.COURSE_OPING;
         System.out.println(userName);

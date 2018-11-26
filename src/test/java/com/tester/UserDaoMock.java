@@ -1,4 +1,4 @@
-package core.tester;
+package com.tester;
 
 import core.dao.UserDao;
 import core.model.User;
@@ -6,7 +6,7 @@ import core.model.User;
 import java.util.List;
 
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoMock implements UserDao {
     @Override
     public User selectByUName(String userName) {
         User tester = new User();
@@ -20,11 +20,16 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List selectAllStu() {
-        return selectAll();
+        return selectAll("");
     }
 
     @Override
-    public List selectAll() {
+    public List selectAllTea() {
+        return null;
+    }
+
+    @Override
+    public List selectAll(String sql) {
         return null;
     }
 

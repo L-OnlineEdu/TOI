@@ -1,4 +1,4 @@
-package core.tester;
+package com.tester;
 
 import core.dao.Dao;
 import core.model.User;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DaoImpl implements Dao {
+public class DaoMock implements Dao {
     @Override
     public List selectAll() {
         List list = new ArrayList();

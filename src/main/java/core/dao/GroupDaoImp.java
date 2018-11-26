@@ -13,19 +13,15 @@ public class GroupDaoImp implements GroupDao {
     @Autowired
     GroupMapper groupMapper;
 
-    @Override
-    public List<User> selectAllGroupUsers(int gid) {
-        return null;
-    }
 
     @Override
     public List selectAll() {
-        return groupMapper.selectAll();
+        return groupMapper.selectAllGroups();
     }
 
     @Override
     public Object select(Class c, int id) {
-        return groupMapper.selectByPrimaryKey(id);
+        return groupMapper.selectOneGroup(id);
     }
 
     @Override
@@ -36,5 +32,26 @@ public class GroupDaoImp implements GroupDao {
     @Override
     public void del(Object x) {
         groupMapper.delete((Group) x);
+    }
+
+    @Override
+    public List<Group> selectAllGroups() {
+        return groupMapper.selectAllGroups();
+    }
+
+    @Override
+    public Group selectOnGroup(int gid) {
+        return groupMapper.selectOneGroup(gid);
+    }
+
+    @Override
+    public List<User> selectUserInOneGroup(int gid) {
+        List<User> users = groupMapper.selectOneGroup(gid).getUsers();
+        return users;
+    }
+
+    @Override
+    public List<Group> selectUserGroups(int uid) {
+        return groupMapper.selectUserGroups(uid);
     }
 }

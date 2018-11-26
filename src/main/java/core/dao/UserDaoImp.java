@@ -31,7 +31,15 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List selectAll() {
+    public List selectAllTea() {
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("role", "tea");
+        return userMapper.selectByExample(example);
+    }
+
+    @Override
+    public List selectAll(String sql) {
 
 
         return userMapper.selectAll();

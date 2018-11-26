@@ -28,22 +28,25 @@ public class MessageServices {
     }
 
     public List getUserIdInGroup(int gid) throws Exception {
-        List userIds = new ArrayList();
-        List users = groupDao.selectAllGroupUsers(gid);
-
-        return getUserListIds(users);
+        List<Integer> userIds = new ArrayList();
+        List<User> users = groupDao.selectUserInOneGroup(gid);
+        List<User> teachers = userDao.selectAllTea();
+        userIds = getUserListIds(users);
+        userIds.addAll(getUserListIds(teachers));
+        return userIds;
 
     }
 
-    private List getUserListIds(List users) throws Exception {
+    private List<Integer> getUserListIds(List<User> users) throws Exception {
         List userIds = new ArrayList();
 
-        for (Object user : users) {
-            if (user instanceof User) {
-                userIds.add(((User) user).getUid());
-            } else {
+        for (User user : users) {
+            // if (user instanceof User) {
+            int uid = user.getUid();
+            userIds.add(uid);
+           /* } else {
                 throw new Exception("类型异常");
-            }
+            }*/
         }
         return userIds;
     }

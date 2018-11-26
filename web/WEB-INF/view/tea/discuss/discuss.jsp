@@ -141,13 +141,13 @@
                 <div class="navbar-fixed">
                     <nav class="cyan">
                         <div class="nav-wrapper">
-                            <h1 class="logo-wrapper"><a href="/tea/home.jsp" class="brand-logo darken-1"><img
+                            <h1 class="logo-wrapper"><a href="/tea/home" class="brand-logo darken-1"><img
                                     src="/utils/img/materialize-logo.png" alt="materialize logo"></a> <span
                                     class="logo-text">Materialize</span></h1>
                             <ul class="right hide-on-med-and-down">
 
                                 <li>
-                                    <a href="/tea/home.jsp" class="waves-effect waves-block waves-light">
+                                    <a href="/tea/home" class="waves-effect waves-block waves-light">
                                         <i class="mdi-maps-local-library"
                                            style="margin-top:-7px;margin-bottom:-14px"></i>
                                         <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的课堂</label>
@@ -156,7 +156,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="/tea/pushpaper.jsp" class="waves-effect waves-block waves-light">
+                                    <a href="/tea/ppaper" class="waves-effect waves-block waves-light">
                                         <i class="mdi-social-poll" style="margin-top:-7px;margin-bottom:-14px"></i>
                                         <label style="display: block; text-align: center; font-size: 10px; line-height: 14px; cursor: pointer; color:#FFF;">我的题库</label>
                                     </a>
