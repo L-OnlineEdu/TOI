@@ -55,7 +55,7 @@ public class WarnController {
     public Map warnInfo() {
         //warnList=new ArrayList();
 
-        List warnList = dao.selectAll("Warn");
+        List warnList = dao.selectAll();
 
 
         String msg = "success";

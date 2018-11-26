@@ -21,6 +21,7 @@
     <context:component-scan base-package="paperandquestion.controller"/>
     <context:component-scan base-package="paperandquestion.dao"/>
     <context:component-scan base-package="paperandquestion.services"/>
+    <context:component-scan base-package="assessment.assess.dao"/>
     <!-- don't handle the static resource -->
     <mvc:default-servlet-handler/>
 
@@ -52,7 +53,8 @@
     <!-- 配置MyBatis注解 -->
     <!--扫描dao接口-->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property value="core.mapper.**,onlineclass.*.mapper.**,paperandquestion.dao" name="basePackage"/>
+        <property value="core.mapper.**,onlineclass.*.mapper.**,assessment.assess.mapper.**,paperandquestion.dao"
+                  name="basePackage"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- 文件解析器 -->

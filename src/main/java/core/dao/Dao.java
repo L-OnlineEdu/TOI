@@ -5,7 +5,7 @@ import java.util.List;
 public interface Dao {
 
 
-    List selectAll(String sql);
+    List selectAll();
 
     Object select(Class c, int id);
 

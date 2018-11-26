@@ -1,6 +1,21 @@
-package assessment.model;
+package assessment.assess.model;
 
+import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Component
+@Table(name = "comment")
+@NameStyle(Style.normal)
 public class Comment {
+    @Id
+    @KeySql(useGeneratedKeys = true)
+    @Column(name = "cid")
     private int cid;
     private Integer puid;
     private Integer ruid;
@@ -45,5 +60,16 @@ public class Comment {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "cid=" + cid +
+                ", puid=" + puid +
+                ", ruid=" + ruid +
+                ", result=" + result +
+                ", type=" + type +
+                '}';
     }
 }

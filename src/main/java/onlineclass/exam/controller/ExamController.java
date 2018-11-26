@@ -32,7 +32,7 @@ public class ExamController {
     @RequestMapping("papers")
     public Map allPaper() {
         Map map = new HashMap();
-        List paperList = dao.selectAll("Paper");
+        List paperList = dao.selectAll();
         String msg;
         if (paperList != null)
             msg = "success";
@@ -173,7 +173,7 @@ public class ExamController {
     @RequestMapping("/tea/scores")
     public Map socres() {
 
-        List<Score> scores = dao.selectAll("Score");
+        List<Score> scores = dao.selectAll();
         List scoresList = new ArrayList();
         for (Score score : scores) {
             ScoreReport scoreReport = new ScoreReport();

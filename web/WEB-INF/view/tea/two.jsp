@@ -625,7 +625,7 @@
     <div id="modal12" class="modal modal-fixed-footer" style="height:250px">
         <div class="modal-content">
             <h4>评教选择</h4>
-            <iframe id="ifm" src="./qn/index.jsp" style="border: #FFFFFF; height: 100px"></iframe>
+            <iframe id="ifm" src="/utils/temp/choose.html" style="border: #FFFFFF; height: 100px"></iframe>
         </div>
 
         <div class="modal-footer">
@@ -701,7 +701,7 @@
 <!--teacher'sjs-->
 <script src="/assert/tea/js/teacherh.js"></script>
 <script src="/assert/tea/js/jxv4.js"></script>
-<script src="../qn/js/Paper.js"></script>
+<script src="/utils/temp/js/Paper.js"></script>
 <!--materialize js-->
 <script type="text/javascript" src="/utils/js/materialize.min.js"></script>
 

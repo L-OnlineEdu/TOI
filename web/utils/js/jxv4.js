@@ -1073,7 +1073,7 @@ function findQnresult(tp) {
         url: "/ass/getQnRs",
         data: {type: tp},
         success: function (data) {
-            $.each(data.qn, function (key, val) {
+            $.each(data, function (key, val) {
                 if (tp == 2) {
                     $("#qn1").append(
                         "        <li class=\"collection-item\">\n" +

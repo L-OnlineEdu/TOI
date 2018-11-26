@@ -17,13 +17,6 @@
     <p><input type="radio" id="st" value="ssqn" name="myrad">学生互评</p>
 </div>
 
-<%--
-  <form action="login">
-    用户名<input type="text" name="userName"/>
-    密码<input type="text" name="passWd"/>
-    <input type="submit" name="login" value="登录"/>
-  </form>
---%>
 
 
 </body>

@@ -1,7 +1,7 @@
 package com.mappertest;
 
-import core.mapper.UserMapper;
-import core.model.User;
+import assessment.assess.mapper.CommentMapper;
+import assessment.assess.model.Comment;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -30,13 +30,14 @@ public class MapperTest1 {
         List list1 = groupMapper.selectAll();
         Assert.assertNotNull(list1);
         System.out.println(list1);*/
-        UserMapper userMapper = context.getBean(UserMapper.class);
+        CommentMapper Mapper = context.getBean(CommentMapper.class);
      /*  User user=new User();
         user.setUserName("stu1");*/
-        Example example = new Example(User.class);
+        Example example = new Example(Comment.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("userName", "stu1");
-        User vu = userMapper.selectOneByExample(example);
+        criteria.andEqualTo("cid", "1");
+        Comment vu = Mapper.selectOneByExample(example);
+        System.out.println(vu);
         //User vu=userMapper.selectOneByExample(user);
         Assert.assertNotNull(vu);
     }

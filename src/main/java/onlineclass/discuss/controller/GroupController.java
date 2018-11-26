@@ -34,7 +34,7 @@ public class GroupController {
                 Group g = (Group) dao.select(Group.class, groupId);
                 groupMembers = g.getUsers();
             } else {
-                groupMembers = dao.selectAll("User");
+                groupMembers = dao.selectAll();
             }
             map.put("groupMembers", groupMembers);
             msg = "success";
@@ -56,7 +56,7 @@ public class GroupController {
         String msg;
         if (u != null) {
             if (u.getRole().equals("tea")) {
-                groupList = dao.selectAll("Group");
+                groupList = dao.selectAll();
             } else
                 groupList = u.getGroups();
             map.put("groupList", groupList);
