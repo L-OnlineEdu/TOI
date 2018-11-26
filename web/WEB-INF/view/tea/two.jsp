@@ -625,7 +625,7 @@
     <div id="modal12" class="modal modal-fixed-footer" style="height:250px">
         <div class="modal-content">
             <h4>评教选择</h4>
-            <iframe id="ifm" src="/utils/temp/choose.html" style="border: #FFFFFF; height: 100px"></iframe>
+            <iframe id="ifm" src="/utils/temp/chooseSorT.html" style="border: #FFFFFF; height: 100px"></iframe>
         </div>
 
         <div class="modal-footer">

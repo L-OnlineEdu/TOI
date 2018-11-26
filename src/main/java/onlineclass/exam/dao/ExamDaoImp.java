@@ -22,7 +22,7 @@ public class ExamDaoImp implements ExamDao {
     }
 
     @Override
-    public List selectAll(String sql) {
+    public List selectAll() {
         return examMapper.selectAll();
     }
 

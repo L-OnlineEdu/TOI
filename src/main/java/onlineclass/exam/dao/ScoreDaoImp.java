@@ -14,7 +14,7 @@ public class ScoreDaoImp implements ScoreDao {
     ScoreMapper scoreMapper;
 
     @Override
-    public List selectAll(String sql) {
+    public List selectAll() {
 
         return scoreMapper.selectAll();
     }
