@@ -1,5 +1,6 @@
 package assessment.assess.model;
 
+import core.model.User;
 import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.annotation.KeySql;
 import tk.mybatis.mapper.annotation.NameStyle;
@@ -21,6 +22,7 @@ public class Comment {
     private Integer ruid;
     private Integer result;
     private Integer type;
+    private User user;
 
     public int getCid() {
         return cid;
@@ -60,6 +62,15 @@ public class Comment {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

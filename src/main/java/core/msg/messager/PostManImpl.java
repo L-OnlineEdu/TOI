@@ -42,4 +42,10 @@ public class PostManImpl implements PostMan {
     public int getOnlineNums() {
         return getOnlineUserIds().size();
     }
+
+
+    public List getOnlineStudents() {
+        return getOnlineUserIds();
+    }
+
 }

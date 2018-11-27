@@ -102,7 +102,7 @@ public class PostOffice {
             case Message.MessageType_SystemMsg:
                 int receiveId = message.getReceiveId();
                 if (receiveId == 0) {
-                    list.add(messageServices.getAllUserId());
+                    list.addAll(messageServices.getAllUserId());
                 } else {
                     list.add(receiveId);
                 }

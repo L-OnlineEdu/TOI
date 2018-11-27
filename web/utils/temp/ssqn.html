@@ -90,9 +90,9 @@
         //其他
         $('#checkBtn').on('click', function () {
             var a = $('#field-dept').val();
-            sendMsg = "ssqn";
+            sendMsg = "qwessqn";
             $.ajax({
-                url: "/sendSsm",
+                url: "/ass/sendSsm",
                 data: {"rids": a, "msg": sendMsg,},
                 success: function (data) {
                     alert("发送成功")

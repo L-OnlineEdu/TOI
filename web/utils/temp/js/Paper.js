@@ -20,7 +20,7 @@ function sendM() {
         sendMsg = a;
         receId = 0;
         $.ajax({
-            url: "/sendTsM",
+            url: "/ass/sendTsM",
             data: {"receiveid": receId, "msg": sendMsg, "msgtype": 4},
             success: function (data) {
                 alert("发送成功")
@@ -31,7 +31,7 @@ function sendM() {
         })
     }
     if (a == "ssqn") {
-        window.location.href = 'http://localhost:8080/qn/ssqn.html'
+        window.location.href = 'http://localhost:8080/utils/temp/ssqn.html'
 
     }
     $('#a1').click();

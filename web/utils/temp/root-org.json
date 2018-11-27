@@ -5,13 +5,13 @@
       "deptname": "第一组",
       "children": [
         {
-          "id": "1",
-          "deptname": "stu1",
+          "id": "6",
+          "deptname": "xiaoming",
           "children": []
         },
         {
-          "id": "2",
-          "deptname": "stu2",
+          "id": "7",
+          "deptname": "xh",
           "children": []
         }
       ]
