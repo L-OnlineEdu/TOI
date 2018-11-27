@@ -20,7 +20,7 @@ public class Group {
     private int gid;
     private String gname;
 
-    private transient List<User> users;
+    private List<User> users;
 
 
     public int getGid() {
