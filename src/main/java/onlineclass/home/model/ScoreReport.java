@@ -1,4 +1,4 @@
-package onlineclass.exam.model;
+package onlineclass.home.model;
 
 public class ScoreReport {
     private String tea;

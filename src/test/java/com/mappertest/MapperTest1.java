@@ -2,10 +2,10 @@ package com.mappertest;
 
 import onlineclass.discuss.mapper.GroupMapper;
 import onlineclass.discuss.model.Group;
-import onlineclass.exam.mapper.ExamMapper;
-import onlineclass.exam.mapper.ScoreMapper;
-import onlineclass.exam.model.Exam;
-import onlineclass.exam.model.Score;
+import onlineclass.home.mapper.ExamMapper;
+import onlineclass.home.mapper.ScoreMapper;
+import onlineclass.home.model.Exam;
+import onlineclass.home.model.Score;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

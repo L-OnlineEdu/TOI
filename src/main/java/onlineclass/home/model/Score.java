@@ -1,4 +1,4 @@
-package onlineclass.exam.model;
+package onlineclass.home.model;
 
 
 import core.model.User;

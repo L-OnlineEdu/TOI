@@ -2,10 +2,10 @@ package onlineclass.home.controller;
 
 import core.msg.messager.PostOffice;
 import core.utils.Utils;
-import onlineclass.exam.dao.ExamDao;
-import onlineclass.exam.dao.ScoreDao;
-import onlineclass.exam.model.Score;
-import onlineclass.exam.model.ScoreReport;
+import onlineclass.home.dao.ExamDao;
+import onlineclass.home.dao.ScoreDao;
+import onlineclass.home.model.Score;
+import onlineclass.home.model.ScoreReport;
 import onlineclass.warning.dao.WarnDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +21,7 @@ import java.util.Map;
 public class StudentInfoController {
     @Autowired
     ExamDao examDao;
+
     @Autowired
     WarnDao warnDao;
     @Autowired

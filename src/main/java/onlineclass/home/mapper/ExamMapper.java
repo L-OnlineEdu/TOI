@@ -1,6 +1,6 @@
-package onlineclass.exam.mapper;
+package onlineclass.home.mapper;
 
-import onlineclass.exam.model.Exam;
+import onlineclass.home.model.Exam;
 import tk.mybatis.mapper.common.Mapper;
 
 public interface ExamMapper extends Mapper<Exam> {

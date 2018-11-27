@@ -1,6 +1,6 @@
-package onlineclass.exam.mapper;
+package onlineclass.home.mapper;
 
-import onlineclass.exam.model.Score;
+import onlineclass.home.model.Score;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;

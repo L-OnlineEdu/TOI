@@ -1,7 +1,7 @@
-package onlineclass.exam.dao;
+package onlineclass.home.dao;
 
 import core.dao.Dao;
-import onlineclass.exam.model.Score;
+import onlineclass.home.model.Score;
 
 import java.util.List;
 

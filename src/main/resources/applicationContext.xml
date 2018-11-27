@@ -14,7 +14,7 @@
     <context:component-scan base-package="*.*.controller"/>
     <context:component-scan base-package="core.msg.**"/>
     <context:component-scan base-package="core.dao"/>
-    <context:component-scan base-package="onlineclass.*.dao"/>
+    <context:component-scan base-package="*.*.dao"/>
     <context:component-scan base-package="core.services"/>
     <context:component-scan base-package="paperandquestion.controller"/>
     <context:component-scan base-package="paperandquestion.dao"/>

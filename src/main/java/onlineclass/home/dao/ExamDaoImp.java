@@ -1,8 +1,8 @@
-package onlineclass.exam.dao;
+package onlineclass.home.dao;
 
-import onlineclass.exam.mapper.ExamMapper;
-import onlineclass.exam.mapper.ScoreMapper;
-import onlineclass.exam.model.Exam;
+import onlineclass.home.mapper.ExamMapper;
+import onlineclass.home.mapper.ScoreMapper;
+import onlineclass.home.model.Exam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

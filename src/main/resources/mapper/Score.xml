@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="onlineclass.exam.mapper.ScoreMapper">
+<mapper namespace="onlineclass.home.mapper.ScoreMapper">
 
 
-    <resultMap id="scoreMap" type="onlineclass.exam.model.Score">
+    <resultMap id="scoreMap" type="onlineclass.home.model.Score">
         <id column="scoreId" property="scoreId"/>
         <result column="endTime" property="endTime"/>
         <result column="score" property="score"/>
@@ -16,7 +16,7 @@
         <association property="exam" column="eid" select="findExam"/>
     </resultMap>
 
-    <resultMap id="examMap" type="onlineclass.exam.model.Exam">
+    <resultMap id="examMap" type="onlineclass.home.model.Exam">
         <id column="eid" property="eid"/>
         <result column="startTimes" property="startTimes"/>
         <result column="examTime" property="examTime"/>
