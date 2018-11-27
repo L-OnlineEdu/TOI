@@ -243,7 +243,7 @@ function editor(qu) {
         url: "/tea/getQuestion",
         data: {"questionid": qu},
         success: function (data) {
-            alert(data.length);
+            // alert(data.length);
             var da = JSON.parse(data);
             var ane = da.answer;
             var Alocation = ane.indexOf("A");
@@ -399,7 +399,7 @@ $("#addPaperTrue").click(function () {
 
     });
     var str = JSON.stringify(listq);
-    alert(str);
+    //alert(str);
     $.ajax({
         url: "/tea/addPaper",
         type: "POST",
@@ -412,7 +412,7 @@ $("#addPaperTrue").click(function () {
             //setTimeout("location.reload();", 1000)
         },
         eror: function () {
-            alert("dsadsad")
+            alert("添加失败")
         }
 
 
