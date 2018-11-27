@@ -46,7 +46,7 @@ public class StudentInfoController {
             infoMap.put("warnNums", warnList.size());
         else infoMap.put("warnNums", 0);
         infoMap.put("warnList", warnList);
-        infoMap.put("lastExam", examDao.getLastExam());
+        infoMap.put("lastExam", null);
         List scoreResprtList = new ArrayList();
         for (Score score : scores) {
             ScoreReport scoreReport = new ScoreReport();
@@ -60,8 +60,8 @@ public class StudentInfoController {
             scoreReport.setTime(minutes + "");
             scoreResprtList.add(scoreReport);
         }
-       /* infoMap.put("scoreReportList",scoreResprtList);
-        JSONObject jsonObject=new JSONObject();
+        infoMap.put("scoreReportList", scoreResprtList);
+         /* JSONObject jsonObject=new JSONObject();
         jsonObject.put("infoMap",infoMap);*/
         return infoMap;
     }

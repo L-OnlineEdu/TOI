@@ -16,6 +16,9 @@
     <context:component-scan base-package="core.dao"/>
     <context:component-scan base-package="onlineclass.*.dao"/>
     <context:component-scan base-package="core.services"/>
+    <context:component-scan base-package="paperandquestion.controller"/>
+    <context:component-scan base-package="paperandquestion.dao"/>
+    <context:component-scan base-package="paperandquestion.services"/>
     <!-- don't handle the static resource -->
     <mvc:default-servlet-handler/>
 
