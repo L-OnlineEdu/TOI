@@ -9,4 +9,6 @@ public interface PostBox {
 
     void deliverMsg(PostMan man, int uid);
 
+    Boolean isEmpty();
+
 }

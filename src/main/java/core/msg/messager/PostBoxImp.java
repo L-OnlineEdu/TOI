@@ -25,4 +25,9 @@ public class PostBoxImp implements PostBox {
         msgList.clear();
     }
 
+    @Override
+    public Boolean isEmpty() {
+        return msgList.size() == 0;
+    }
+
 }

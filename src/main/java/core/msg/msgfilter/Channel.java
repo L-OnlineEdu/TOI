@@ -55,4 +55,7 @@ public class Channel {
         return channelOpened == ALL_CHANNEL || channelOpened == channel;
     }
 
+    public Boolean isChannelEmpty() {
+        return chatPostBox.isEmpty() && sysmsgPostBox.isEmpty();
+    }
 }

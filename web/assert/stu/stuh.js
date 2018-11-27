@@ -8,8 +8,8 @@ function refreshInfoMap() {
         data: {},
         success: function (data) {
             if (data != "null") {
-                var mypoints = data.myScore;
-                $("#mypoints").html(mypoints + "分");
+                /*  var mypoints = data.myScore;
+                  $("#mypoints").html(mypoints + "分");*/
                 var onlineDisNum = data.onlineDiscuss;
                 $("#onliNum").html(onlineDisNum + "人");
                 var warnNums = data.warnNums;
@@ -27,9 +27,9 @@ function refreshInfoMap() {
 
 
                 //console.info(testing)
-                $("#isExam").html(testing);
+                /*    $("#isExam").html(testing);*/
                 $("#warn-collection").children(":not(':first')").remove();
-                $("#score-collection").children(":not(':first')").remove();
+                /*  $("#score-collection").children(":not(':first')").remove();*/
                 ss = "";
                 $(warnList).each(function (k, v) {
                     ss += "<li class=\"collection-item\">\n" +
@@ -50,27 +50,27 @@ function refreshInfoMap() {
                 });
                 $("#warn-collection").append(ss);
 
-                var scoreList = data.scoreReportList;
-                ss2 = "";
-                $(scoreList).each(function (k, v) {
-                    ss2 += "<li class=\"collection-item\">\n" +
-                        "                    <div class=\"row\">\n" +
-                        "                        <div class=\"col s7\">\n" +
-                        "                            <p class=\"collections-title\"><strong>" + v.score + "</strong>分</p>\n" +
-                        "                            <p class=\"collections-content\"></p>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"col s2\">\n" +
-                        "                            <span class=\"task-cat cyan\">" + v.tea + "</span>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"col s3\">用时：\n" +
-                        "                            " + v.time + "分钟\n" +
-                        "                        </div>\n" +
-                        "                    </div>\n" +
-                        "                </li>"
+                /*   var scoreList = data.scoreReportList;
+                   ss2 = "";
+                   $(scoreList).each(function (k, v) {
+                       ss2 += "<li class=\"collection-item\">\n" +
+                           "                    <div class=\"row\">\n" +
+                           "                        <div class=\"col s7\">\n" +
+                           "                            <p class=\"collections-title\"><strong>" + v.score + "</strong>分</p>\n" +
+                           "                            <p class=\"collections-content\"></p>\n" +
+                           "                        </div>\n" +
+                           "                        <div class=\"col s2\">\n" +
+                           "                            <span class=\"task-cat cyan\">" + v.tea + "</span>\n" +
+                           "                        </div>\n" +
+                           "                        <div class=\"col s3\">用时：\n" +
+                           "                            " + v.time + "分钟\n" +
+                           "                        </div>\n" +
+                           "                    </div>\n" +
+                           "                </li>"
 
-                });
+                   });
 
-                $("#score-collection").append(ss2)
+                   $("#score-collection").append(ss2)*/
             }
         },
         error: function () {

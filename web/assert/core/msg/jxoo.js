@@ -1,4 +1,4 @@
-var msgfilter = 2;
+msgfilter = 2;
 String.prototype.temp = function (obj) {
     return this.replace(/\%\w+\.?\w+?\.?\w+?\%/gi, function (matchs) {
 
