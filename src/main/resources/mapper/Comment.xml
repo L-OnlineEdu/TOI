@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="assessment.assess.mapper.CommentMapper">
+    <select id="selectRusers" parameterType="int" resultMap="CommentMap">
+        select *
+        from Users u,
+             Comment t
+        where u.uid = t.ruid
+          and t.cid = #{id}
+    </select>
+    <resultMap type="assessment.assess.model.Comment" id="CommentMap">
+        <id property="cid" column="cid"/>
+        <result property="puid" column="puid"/>
+        <result property="ruid" column="ruid"/>
+        <result property="result" column="result"/>
+        <result property="type" column="type"/>
+        <association property="user" column="user.uid" javaType="core.model.User">
+            <id property="id" column="t_id"/>
+            <result property="uid" column="uid"/>
+            <result property="userName" column="userName"/>
+            <result property="passWord" column="passWord"/>
+            <result property="role" column="role"/>
+        </association>
+    </resultMap>
+
+
+</mapper>

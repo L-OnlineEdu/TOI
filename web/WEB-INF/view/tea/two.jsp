@@ -652,6 +652,7 @@
                     <th>被评价学生ID</th>
                     <th>学生姓名</th>
                     <th>评价结果</th>
+                    <th>重新评价</th>
                 </tr>
                 </thead>
                 <tbody id="qn12">
@@ -826,7 +827,7 @@
                         $("#md13").html("");
                         $.each(result, function (i, stu) {
 
-                            $("#md13").append("<div  class=\"chip\"    >\n" +
+                            $("#md13").append("<div  class=\"chip\" onclick='t2sqn(" + stu.uid + ")' >\n" +
                                 "                        <img src=\"/utils/img/stu1.jpg\" alt=Contact Person>\n" +
                                 stu.userName +
                                 "                    </div>")
@@ -846,15 +847,16 @@
                 $.ajax({
                     type: "POST",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: "/getTesRs",//url
+                    url: "/ass/getTesRs",//url
                     data: {"type": 2},
                     success: function (data) {
                         $("#qn12").html("");
-                        $.each(data.qn, function (key, val) {
+                        $.each(data, function (key, val) {
                             $("#qn12").append("   <tr>\n" +
-                                "                <td>" + val[1] + "</td>\n" +
-                                "                <td>" + val[2] + "</td>\n" +
-                                "                <td>" + val[0] + "</td>\n" +
+                                "                <td>" + (key + 1) + "</td>\n" +
+                                "                <td>" + val.user.userName + "</td>\n" +
+                                "                <td>" + val.result + "</td>\n" +
+                                "                <td onclick='updateJs(" + val.cid + ")'> 修改 </td>\n" +
                                 "            </tr>")
                         })
                     },
@@ -910,6 +912,11 @@
         })
     }
 
+    function updateJs(id) {
+        window.location.href = "/utils/temp/question.html?flag=ssqn&&cid=-" + id
+
+
+    }
 
 </script>
 <script>

@@ -183,23 +183,40 @@
                             rs += 4;
                         }
                     });
-                    $.ajax({
-                        url: "/ass/saveS",
-                        data: {"rid": GetRequest(1), "result": rs, "type": GetRequest(2)},
-                        success: function (data) {
-                            alert("评价成功，已记录，现在返回");
-                            if (GetRequest(2) == 2) {
-                                window.location.href = "/tea/two.jsp"
-                            } else {
-                                window.location.href = "/stu/stuhome.jsp"
+                    if (GetRequest(1) < 0) {
+                        $.ajax({
+                            url: "/ass/updateS",
+                            data: {"cid": GetRequest(1), "result": rs},
+                            success: function (data) {
+                                alert("更新成功，已记录，现在返回");
+                                window.location.href = "/tea/home"
 
                             }
+                            , error: function () {
+                                console.info("send bad")
+                            }
+                        })
 
-                        }
-                        , error: function () {
-                            console.info("send bad")
-                        }
-                    })
+
+                    } else {
+                        $.ajax({
+                            url: "/ass/saveS",
+                            data: {"rid": GetRequest(1), "result": rs, "type": GetRequest(2)},
+                            success: function (data) {
+                                alert("评价成功，已记录，现在返回");
+                                if (GetRequest(2) == 2) {
+                                    window.location.href = "/tea/home"
+                                } else {
+                                    window.location.href = "/stu/home"
+
+                                }
+
+                            }
+                            , error: function () {
+                                console.info("send bad")
+                            }
+                        })
+                    }
                 }
 
             });

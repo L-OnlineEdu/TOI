@@ -25,6 +25,17 @@ public class QuestionnaireController {
     @Autowired
     private UserDao userdao;
 
+    @RequestMapping("/ass/updateS")
+    public void update(int cid, int result) {
+        Comment c = new Comment();
+        cid = Math.abs(cid);
+        c = (Comment) dao.select(Comment.class, cid);
+        c.setResult(result);
+        dao.update(c);
+    }
+
+
+
     @RequestMapping("/ass/saveS")
     public String saveScore(int type, int rid, int result) {
         Comment c = new Comment();
@@ -64,9 +75,14 @@ public class QuestionnaireController {
 
     @RequestMapping("/ass/getTesRs")
     public List getTeacherResult(int type) {
-
+        qn = new ArrayList();
         if(type==2) {
-            //qn = dao.findList(" select c.result, c.ruid, u.userName from Comment c , User u where c.type=? and c.puid=? and u.uid=c.ruid", type, Utils.getUser().getUid() );
+            List us = dao.selectBypid(Utils.getUser().getUid());
+            for (int i = 0; i < us.size(); i++) {
+                Comment c = (Comment) us.get(i);
+                qn.add(dao.selectRusers(c.getCid()).get(0));
+            }
+
         }else{
             qn = dao.selectByTypeAndRuid(type, Utils.getUser().getUid());
         }
@@ -89,7 +105,6 @@ public class QuestionnaireController {
         for (int i = 0; i < usernb.size(); i++) {
             users.add(userdao.select(User.class, (int) usernb.get(i)));
         }
-        System.out.println(users.get(0).toString());
         return users;
     }
 

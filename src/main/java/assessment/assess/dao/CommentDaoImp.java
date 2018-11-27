@@ -28,6 +28,12 @@ public class CommentDaoImp implements CommentDao {
         comMapper.delete((Comment) x);
     }
 
+    public void update(Comment x) {
+
+        comMapper.updateByPrimaryKey(x);
+
+
+    }
 
     public List<Comment> selectByTypeAndRuid(int type, int id) {
         Example example = new Example(Comment.class);
@@ -39,6 +45,20 @@ public class CommentDaoImp implements CommentDao {
     @Override
     public List selectAll() {
         return comMapper.selectAll();
+    }
+
+    public List<Comment> selectRusers(int cid) {
+
+
+        return comMapper.selectRusers(cid);
+
+    }
+
+    public List<Comment> selectBypid(int pid) {
+        Example example = new Example(Comment.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("puid", pid);
+        return comMapper.selectByExample(example);
     }
 
 }

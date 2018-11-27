@@ -1,5 +1,6 @@
 package com.mappertest;
 
+import assessment.assess.dao.CommentDao;
 import core.dao.GroupDao;
 import core.dao.UserDao;
 import core.dao.UserDaoImp;
@@ -49,4 +50,14 @@ public class DaoTest {
         System.out.println(group);
         Assert.assertNotNull(group);*/
     }
+
+    @Test
+    public void testComment() {
+        context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        CommentDao Dao = context.getBean(CommentDao.class);
+        User c = Dao.selectRusers(1).get(0).getUser();
+        System.out.println(c.getUserName());
+        Assert.assertNotNull(c);
+    }
+
 }
