@@ -4,10 +4,10 @@ package paperandquestion.controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import paperandquestion.model.Paper;
 import paperandquestion.model.Question;
 import paperandquestion.services.PaperService;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController("paperController")
+@Controller("paperController")
 //@Scope("prototype")
 public class PaperController {
     //
@@ -44,6 +44,10 @@ public class PaperController {
         this.paperService = paperService;
     }
 
+    @RequestMapping("/tea/ppaper")
+    public String ppaper() {
+        return "tea/pushpaper";
+    }
     @RequestMapping(value = "tea/findAllPaper", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findAllPaper() {
