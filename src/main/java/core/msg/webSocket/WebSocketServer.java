@@ -3,7 +3,6 @@ package core.msg.webSocket;
 import com.alibaba.fastjson.JSON;
 import core.model.Message;
 import core.msg.messager.PostOffice;
-import core.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
@@ -25,13 +24,13 @@ public class WebSocketServer {
     // 已经建立链接的对象缓存起来
     private static ConcurrentMap<Integer, Session> serverMap = new ConcurrentHashMap<Integer, Session>();
     // 当前session
-    // private Session currentSession;
+    //private Session currentSession;
     @Autowired
     private PostOffice postOffice;
 
     @OnOpen
     public void onOpen(Session session, @PathParam("fromUserId") int fromUserId, @PathParam("channel") int channel) throws IOException {
-        //this.currentSession = session;
+        // this.currentSession = session;
 //        int fuid=Utils.getUser().getUid();
         serverMap.put(fromUserId, session);//建立链接时，缓存对象
         System.out.println("f:" + fromUserId);
@@ -41,14 +40,17 @@ public class WebSocketServer {
     @OnClose
     public void onClose(Session session, CloseReason reason) {
         System.out.println(reason.toString());
-        if (serverMap.containsValue(this)) {
+        if (serverMap.containsValue(session)) {
+
             Iterator<Integer> keys = serverMap.keySet().iterator();
-            int userId = Utils.getUser().getUid();
-            postOffice.userLeave(userId);
+            //int userId = Utils.getUser().getUid();
+
             while (keys.hasNext()) {
-                userId = keys.next();
-                if (serverMap.get(userId) == this) {
-                    serverMap.remove(userId, this);//关闭链接时，删除缓存对象
+                int userId = keys.next();
+
+                if (serverMap.get(userId) == session) {
+                    postOffice.userLeave(userId);
+                    serverMap.remove(userId);//关闭链接时，删除缓存对象
                 }
             }
         }
@@ -66,7 +68,7 @@ public class WebSocketServer {
         HashMap<String, String> map = JSON.parseObject(json, HashMap.class);
         int fromUserId = Integer.parseInt(map.get("fromUserId"));
         int toUserId = Integer.parseInt(map.get("toUserId"));
-        String content = map.get("content").toString();
+        String content = map.get("content");
         Session session = serverMap.get(toUserId);//若存在则用户在线，否在用户不在线
         if (session != null && session.isOpen()) {
             if (fromUserId != toUserId) {

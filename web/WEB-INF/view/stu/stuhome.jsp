@@ -497,8 +497,14 @@
 </div>
 <input type="hidden" id="userId" value="${user.uid}">
 <script src="/utils/js/jquery-1.11.2.min.js"></script>
-<script src="/utils/js/jxv4.js"></script>
+<script type="text/javascript" src="/assert/core/msg/reconnecting-websocket.min.js"></script>
+
+<script type="text/javascript" src="/assert/core/msg/ws.js"></script>
+
+<script type="text/javascript" src="/assert/core/msg/jxoo.js"></script>
 <script>
+    msgfilter = 1;
+    refreshInfoMap();
     function checkCourse() {
         $.ajax({
             //几个参数需要注意一下
@@ -512,7 +518,7 @@
     }
 
     $(document).ready(function () {
-        msgfilter = 1;
+
         $("#showHisCou").click(function () {
             $.ajax({
                 //几个参数需要注意一下
@@ -544,6 +550,8 @@
 
     })
 </script>
+
+
 <script src="/utils/swx/sweetalert-dev.js"></script>
 <script src="/assert/stu/stuh.js"></script>
 <!--materialize js-->

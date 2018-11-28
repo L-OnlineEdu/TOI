@@ -2,10 +2,6 @@ package com.mappertest;
 
 import onlineclass.discuss.mapper.GroupMapper;
 import onlineclass.discuss.model.Group;
-import onlineclass.exam.mapper.ExamMapper;
-import onlineclass.exam.mapper.ScoreMapper;
-import onlineclass.exam.model.Exam;
-import onlineclass.exam.model.Score;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -43,14 +39,14 @@ public class MapperTest1 {
         //User vu=userMapper.selectOneByExample(user);
         Assert.assertNotNull(vu);*/
 
-
+/*
         ExamMapper examMapper = context.getBean(ExamMapper.class);
         Exam exam = examMapper.getLastExam();
         Assert.assertNotNull(exam);
-        System.out.println(exam);
+        System.out.println(exam);*/
     }
 
-    @Test
+  /*  @Test
     public void testScoreMapper() {
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
@@ -58,7 +54,7 @@ public class MapperTest1 {
         Score score = scoreMapper.finduserLastScore(1);
         //Assert.assertNotNull(score);
         System.out.println(score);
-    }
+    }*/
 
     @Test
     public void groupMapperTest() {

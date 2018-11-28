@@ -67,7 +67,11 @@ public class PostOffice {
     }
 
     public void userLeave(int uid) {
-        removeChannel(uid);
+        if (getChannel(uid) != null) {
+            getChannel(uid).switchChannel(Channel.UNOPEN_CHANNEL);
+            removeChannel(uid);
+        }
+
     }
     private List<Integer> sortMessage(Message message) throws Exception {
         List list = new ArrayList();
@@ -128,7 +132,10 @@ public class PostOffice {
     }
 
     private void removeChannel(int uid) {
-        usersPostBoxes.remove(uid);
+        Channel channel = (Channel) usersPostBoxes.get(uid);
+        if (channel.isChannelEmpty())
+            usersPostBoxes.remove(channel);
+
     }
 
     public int getOnlineNums() {

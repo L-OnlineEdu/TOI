@@ -71,7 +71,7 @@
 
 .chat-thread .rightChat[data-uid='1']:before {
     right: -80px;
-    background: url("/utils/utils/ava/1.jpg");
+    background: url("/utils/ava/1.jpg");
     background-size: contain;
 }
 

@@ -14,9 +14,11 @@
     <context:component-scan base-package="*.*.controller"/>
     <context:component-scan base-package="core.msg.**"/>
     <context:component-scan base-package="core.dao"/>
-    <context:component-scan base-package="assessment.assess.dao"/>
-    <context:component-scan base-package="onlineclass.*.dao"/>
+    <context:component-scan base-package="*.*.dao"/>
     <context:component-scan base-package="core.services"/>
+    <context:component-scan base-package="paperandquestion.controller"/>
+    <context:component-scan base-package="paperandquestion.dao"/>
+    <context:component-scan base-package="paperandquestion.services"/>
     <!-- don't handle the static resource -->
     <mvc:default-servlet-handler/>
 
@@ -47,7 +49,7 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
-    <context:property-placeholder location="classpath:jdbcc.properties"/>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
     <!--配置 SqlSessionFactory -->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
         <property name="dataSource" ref="ds"/>
@@ -56,8 +58,7 @@
     <!-- 配置MyBatis注解 -->
     <!--扫描dao接口-->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property value="core.mapper.**,onlineclass.*.mapper.**,assessment.assess.mapper.**,paperandquestion.dao"
-                  name="basePackage"/>
+        <property value="core.mapper.**,onlineclass.*.mapper.**,paperandquestion.dao" name="basePackage"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- 文件解析器 -->

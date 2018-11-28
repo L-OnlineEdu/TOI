@@ -10,8 +10,8 @@ public class JaveUsePython {
 	     */
 	    public static void runPy(String path) throws IOException {
             Runtime.getRuntime().exec("cmd /k  start python " + path);
-	        System.out.println("cmd /k start python "+path);
-	    }
+            System.out.println("cmd /k start python " + path);
+        }
 
 
 }
