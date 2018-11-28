@@ -250,20 +250,7 @@
                         </div>--%>
 
                     </div>
-                    <%--<div class="row">
-                        <div class="col s6 m6 l6 center-align">
-                            <div class="flight-info">
-                                <p class="small"><span class="grey-text">教师未登录</p>
 
-                            </div>
-                        </div>
-                        <div class="col s6 m6 l6 center-align flight-state-two">
-                            <div class="flight-info">
-                                <p class="small"><span class="grey-text">上次练习时间</span></p>
-
-                            </div>
-                        </div>
-                    </div>--%>
                 </div>
             </div>
         </div>
@@ -504,51 +491,9 @@
 <script type="text/javascript" src="/assert/core/msg/jxoo.js"></script>
 <script>
     msgfilter = 1;
-    refreshInfoMap();
-    function checkCourse() {
-        $.ajax({
-            //几个参数需要注意一下
-            type: "POST",//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: "/stu/checkCourStatu",//url
-            success: function (result) {
-
-            }
-        });
-    }
-
-    $(document).ready(function () {
-
-        $("#showHisCou").click(function () {
-            $.ajax({
-                //几个参数需要注意一下
-                type: "POST",//方法类型
-                dataType: "json",//预期服务器返回的数据类型
-                url: "/stu/findHistCou",//url
-                success: function (result) {
-                    $("#showDiv").html("<table id=\"showCourse\" class=\"striped\">\n" +
-                        "                                    <thead>\n" +
-                        "                                    <tr>\n" +
-                        "                                        <th data-field=\"id\">课程名称</th>\n" +
-                        "                                        <th data-field=\"name\">讲课老师</th>\n" +
-                        "                                        <th data-field=\"price\">时间</th>\n" +
-                        "                                    </tr>\n" +
-                        "                                    </thead>\n" +
-                        "                                </table>");
-                    $.each(result.courses, function (i, course) {
-                        $("#showCourse").append("<tr><td>" + course.courseName + "</td><td>" + course.teacher.userName +
-                            "</td><td>" + course.date + "</td></tr>")
-                    });
-                },
-                error: function () {
-                    alert("异常！");
-                }
-            });
-        });
-        findQnresult(1);
-        findQnresult(2)
-
-    })
+    // refreshInfoMap();
+    findQnresult(1);
+    findQnresult(2)
 </script>
 
 
@@ -557,7 +502,7 @@
 <!--materialize js-->
 <script type="text/javascript" src="/utils/js/materialize.min.js"></script>
 <script src="/utils/alert/js/alert.js"></script>
-
+<script src="/utils/temp/add.js"></script>
 </body>
 
 </html>

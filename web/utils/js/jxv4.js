@@ -1074,6 +1074,7 @@ function findQnresult(tp) {
         data: {type: tp},
         success: function (data) {
             $.each(data, function (key, val) {
+                alert("111111");
                 if (tp == 2) {
                     $("#qn1").append(
                         "        <li class=\"collection-item\">\n" +
