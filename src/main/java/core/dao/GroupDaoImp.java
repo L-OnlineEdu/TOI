@@ -15,7 +15,7 @@ public class GroupDaoImp implements GroupDao {
 
 
     @Override
-    public List selectAll(String sql) {
+    public List selectAll() {
         return groupMapper.selectAllGroups();
     }
 

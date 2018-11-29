@@ -68,7 +68,7 @@ public class WebSocketServer {
         HashMap<String, String> map = JSON.parseObject(json, HashMap.class);
         int fromUserId = Integer.parseInt(map.get("fromUserId"));
         int toUserId = Integer.parseInt(map.get("toUserId"));
-        String content = map.get("content").toString();
+        String content = map.get("content");
         Session session = serverMap.get(toUserId);//若存在则用户在线，否在用户不在线
         if (session != null && session.isOpen()) {
             if (fromUserId != toUserId) {

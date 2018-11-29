@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DaoMock implements Dao {
     @Override
-    public List selectAll(String sql) {
+    public List selectAll() {
         List list = new ArrayList();
         User tester = new User();
         tester.setUid(1);

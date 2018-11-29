@@ -625,7 +625,7 @@
     <div id="modal12" class="modal modal-fixed-footer" style="height:250px">
         <div class="modal-content">
             <h4>评教选择</h4>
-            <iframe id="ifm" src="../qn/index.jsp" style="border: #FFFFFF; height: 100px"></iframe>
+            <iframe id="ifm" src="/utils/temp/chooseSorT.html" style="border: #FFFFFF; height: 100px"></iframe>
         </div>
 
         <div class="modal-footer">
@@ -652,6 +652,7 @@
                     <th>被评价学生ID</th>
                     <th>学生姓名</th>
                     <th>评价结果</th>
+                    <th>重新评价</th>
                 </tr>
                 </thead>
                 <tbody id="qn12">
@@ -674,6 +675,7 @@
                     <th>序号</th>
                     <th>方式</th>
                     <th>结果</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody id="que2">
@@ -701,7 +703,7 @@
 <!--teacher'sjs-->
 <script src="/assert/tea/js/teacherh.js"></script>
 <script src="/assert/tea/js/jxv4.js"></script>
-<script src="../qn/js/Paper.js"></script>
+<script src="/utils/temp/js/Paper.js"></script>
 <!--materialize js-->
 <script type="text/javascript" src="/utils/js/materialize.min.js"></script>
 
@@ -770,44 +772,46 @@
             'scrollbars=yes,resizable=no,location=no, status=no')
     }
 
-    function check() {
-        /*window.open ('two.html','add',
-            'height=600, width=800, top=60, left=200, toolbar=no,menubar=no,' +
-            'scrollbars=yes,resizable=no,location=no, status=no') ;*/
-        $.ajax({
-            //几个参数需要注意一下
-            type: "POST",//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: "/stu/allOnlineStu",//url
-            data: {},
-            success: function (result) {
-                a = 0;
-                b = 0;
-                $("#showOnline").html("");
-                $("#showOffline").html("");
-                $.each(result.onlineStu, function (i, stu) {
-                    a++;
-                    $("#showOnline").append("<div class=\"chip\">\n" +
-                        "                        <img src=\"img/stu1.jpg\" alt=\"Contact Person\">\n" +
-                        stu.userName +
-                        "                    </div>")
-                });
-                $.each(result.offlineStu, function (i, stu) {
-                    b++;
-                    $("#showOffline").append("<div class=\"chip\">\n" +
-                        "                        <img src=\"img/stu.jpg\" alt=\"Contact Person\">\n" +
-                        stu.userName +
-                        "                    </div>")
-                });
-                c = (a / (a + b)) * 100;
-                cStr = c.toString();
-                crate = cStr.substring(0, 5);
-                $("#prog").css("width", crate + "%");
-                $("#prog").html("出勤率：" + crate + "%");
-                $("#modal1").openModal()
-            }
-        });
-    }
+    /*
+        function check() {
+            /!*window.open ('two.html','add',
+                'height=600, width=800, top=60, left=200, toolbar=no,menubar=no,' +
+                'scrollbars=yes,resizable=no,location=no, status=no') ;*!/
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/stu/allOnlineStu",//url
+                data: {},
+                success: function (result) {
+                    a = 0;
+                    b = 0;
+                    $("#showOnline").html("");
+                    $("#showOffline").html("");
+                    $.each(result.onlineStu, function (i, stu) {
+                        a++;
+                        $("#showOnline").append("<div class=\"chip\">\n" +
+                            "                        <img src=\"img/stu1.jpg\" alt=\"Contact Person\">\n" +
+                            stu.userName +
+                            "                    </div>")
+                    });
+                    $.each(result.offlineStu, function (i, stu) {
+                        b++;
+                        $("#showOffline").append("<div class=\"chip\">\n" +
+                            "                        <img src=\"img/stu.jpg\" alt=\"Contact Person\">\n" +
+                            stu.userName +
+                            "                    </div>")
+                    });
+                    c = (a / (a + b)) * 100;
+                    cStr = c.toString();
+                    crate = cStr.substring(0, 5);
+                    $("#prog").css("width", crate + "%");
+                    $("#prog").html("出勤率：" + crate + "%");
+                    $("#modal1").openModal()
+                }
+            });
+        }
+    */
 
     <!--打开问卷模态需要的各种操作 -->
     function openQn(a) {
@@ -817,24 +821,17 @@
                 $.ajax({
                     type: "POST",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: "/stu/allOnlineStu",//url
+                    url: "/ass/allOnlineStu",//url
                     data: {},
                     success: function (result) {
                         $("#md13").html("");
-                        $.each(result.onlineStu, function (i, stu) {
+                        $.each(result, function (i, stu) {
 
-                            $("#md13").append("<div  class=\"chip\"    >\n" +
-                                "                        <img src=\"img/stu1.jpg\" alt=\"Contact Person\">\n" +
+                            $("#md13").append("<div  class=\"chip\" onclick='t2sqn(" + stu.uid + ")' >\n" +
+                                "                        <img src=\"/utils/img/stu1.jpg\" alt=Contact Person>\n" +
                                 stu.userName +
                                 "                    </div>")
                         });
-                        $.each(result.offlineStu, function (i, stu) {
-
-                            $("#md13").append("<div class=\"chip\" onclick='t2sqn(" + stu.uid + ")'>\n" +
-                                "                        <img src=\"img/stu.jpg\" alt=\"Contact Person\">\n" +
-                                stu.userName +
-                                "                    </div>")
-                        })
 
                     },
 
@@ -850,15 +847,16 @@
                 $.ajax({
                     type: "POST",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: "/getTesRs",//url
+                    url: "/ass/getTesRs",//url
                     data: {"type": 2},
                     success: function (data) {
                         $("#qn12").html("");
-                        $.each(data.qn, function (key, val) {
+                        $.each(data, function (key, val) {
                             $("#qn12").append("   <tr>\n" +
-                                "                <td>" + val[1] + "</td>\n" +
-                                "                <td>" + val[2] + "</td>\n" +
-                                "                <td>" + val[0] + "</td>\n" +
+                                "                <td>" + (key + 1) + "</td>\n" +
+                                "                <td>" + val.user.userName + "</td>\n" +
+                                "                <td>" + val.result + "</td>\n" +
+                                "                <td onclick='updateJs(" + val.cid + ")'> 修改 </td>\n" +
                                 "            </tr>")
                         })
                     },
@@ -866,24 +864,7 @@
                 return;
             case 4:
                 $("#qnn2").openModal();
-                $.ajax({
-                    type: "POST",//方法类型
-                    dataType: "json",//预期服务器返回的数据类型
-                    url: "/getTesRs",//url
-                    data: {"type": 1},
-                    success: function (data) {
-                        $("#que2").html("");
-                        $.each(data.qn, function (key, val) {
-
-                            $("#que2").append("   <tr>\n" +
-                                "                <td>" + key + 1 + "</td>\n" +
-
-                                "                <td>匿名</td>\n" +
-                                "                <td>" + val + "</td>\n" +
-                                "            </tr>")
-                        })
-                    },
-                });
+                addRs();
                 return;
             default:
                 return
@@ -891,8 +872,52 @@
     }
 
     function t2sqn(a) {
-        window.location.href = "/qn/question.html?flag=ssqn&&rid=" + a + "&&type=2"
+        window.location.href = "/utils/temp/question.html?flag=ssqn&&rid=" + a + "&&type=2"
     }
+
+
+    function addRs() {
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/ass/getTesRs",//url
+            data: {"type": 1},
+            success: function (data) {
+                $("#que2").html("");
+                $.each(data, function (key, val) {
+
+                    $("#que2").append("   <tr>\n" +
+                        "                <td>" + (key + 1) + "</td>\n" +
+
+                        "                <td>匿名</td>\n" +
+                        "                <td>" + val.result + "</td>\n" +
+                        "                <td onclick='deleteAss(" + val.cid + "," + val.type + ")'>删除</td>\n" +
+                        "            </tr>")
+                })
+            },
+        });
+    }
+
+    function deleteAss(id) {
+        $.ajax({
+            url: "/ass/delRs",
+            data: {"cid": id},
+            success: function (data) {
+                addRs()
+
+            },
+            error: function () {
+                console.info("失败")
+            }
+        })
+    }
+
+    function updateJs(id) {
+        window.location.href = "/utils/temp/question.html?flag=ssqn&&cid=-" + id
+
+
+    }
+
 </script>
 <script>
     function record() {

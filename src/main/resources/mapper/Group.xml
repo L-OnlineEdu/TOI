@@ -12,15 +12,30 @@
         </collection>
     </resultMap>
     <select id="selectOneGroup" resultMap="groupMap">
-        SELECT * FROM groups,gruops_2_users,users WHERE groups.gid=#{gid}=gruops_2_users.gid AND
-        gruops_2_users.uid=users.uid
+        SELECT *
+        FROM groups,
+             gruops_2_users,
+             users
+        WHERE groups.gid = #{gid} = gruops_2_users.gid
+          AND
+            gruops_2_users.uid = users.uid
     </select>
     <select id="selectAllGroups" resultMap="groupMap">
-        SELECT * FROM groups,gruops_2_users,users WHERE gruops_2_users.gid=groups.gid AND gruops_2_users.uid=users.uid;
+        SELECT *
+        FROM groups,
+             gruops_2_users,
+             users
+        WHERE gruops_2_users.gid = groups.gid
+          AND gruops_2_users.uid = users.uid;
     </select>
 
     <select id="selectUserGroups" resultMap="groupMap">
-        SELECT * FROM groups,gruops_2_users,users WHERE gruops_2_users.gid=groups.gid AND
-        users.uid=#{uid}=gruops_2_users.uid;
+        SELECT *
+        FROM groups,
+             gruops_2_users,
+             users
+        WHERE gruops_2_users.gid = groups.gid
+          AND
+            users.uid = #{uid} = gruops_2_users.uid;
     </select>
 </mapper>

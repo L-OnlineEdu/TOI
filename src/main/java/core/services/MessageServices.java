@@ -21,7 +21,7 @@ public class MessageServices {
 
     public List getAllUserId() throws Exception {
 
-        List users = userDao.selectAll("user");
+        List users = userDao.selectAll();
 
         return getUserListIds(users);
 
