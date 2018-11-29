@@ -2,7 +2,7 @@ import re
 import docx
 import DB
 
-doc=docx.Document(r'E:/webproject/TOI/classes/artifacts/TOI_war_exploded/assert/py/a.docx')
+doc=docx.Document(r'F:/Ttt/TOI/out/artifacts/TOI_war_exploded/assert/py/a.docx')
 
 
 fullText = []

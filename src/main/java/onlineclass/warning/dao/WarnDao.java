@@ -14,7 +14,7 @@ public class WarnDao implements Dao {
     WarnMapper warnMapper;
 
     @Override
-    public List selectAll(String sql) {
+    public List selectAll() {
         return warnMapper.findAllWarn();
     }
 

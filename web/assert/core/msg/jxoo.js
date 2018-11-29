@@ -360,8 +360,8 @@ function jiexi(msgList) {
                     Materialize.toast(sx, 5000);
 
                 }
-                if (val.message.indexOf("ssqn") != -1) {
-                    b = val.message.replace("ssqn", "");
+                if (val.message.indexOf("qwessqn") != -1) {
+                    b = val.message.replace("qwessqn", "");
                     alert("根据老师要求，需要你对ID为" + b + "的同学进行评价");
                     $(location).attr('href', '/qn/question.html?flag=ssqn&&rid=' + b + "&&type=1")
                 }
@@ -401,6 +401,25 @@ function jiexi(msgList) {
                 initDrop();
 
                 break;
+
+            case systemMType.questionN:
+
+                if (message.message == "tsqn" && $("#msgflag").val() != "true") {
+                    alert("教师已推送试卷，需要评价");
+                    $(location).attr('href', '/utils/temp/question.html?flag=tsqn&&ruid=' + message.sender.uid + '&&type=1')
+
+                }
+                if (message.message.indexOf("qwessqn") != -1 && $("#msgflag").value != "true") {
+                    b = message.message.replace("qwessqn", "");
+                    alert("根据老师要求，需要你对ID为" + b + "的同学进行评价");
+                    $(location).attr('href', '/utils/temp/question.html?flag=ssqn&&rid=' + b + "&&type=1")
+                }
+
+                break;
+            default:
+                console.info(message.systemMessageType);
+                break;
+
         }
 
     })

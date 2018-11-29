@@ -12,4 +12,5 @@ public interface PaperDao {
     public int updatePaper(Paper paper);
     public int deletePaper(Paper paper);
     public List<Paper> findAllPaper();
+    public int findPaperId();
 }

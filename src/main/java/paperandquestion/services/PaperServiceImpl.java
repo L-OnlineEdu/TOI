@@ -49,6 +49,6 @@ public class PaperServiceImpl implements PaperService  {
 
     @Override
     public int findPaperId() {
-        return 0;//paperDao.findPaperId();
+        return paperDao.findPaperId();
     }
 }

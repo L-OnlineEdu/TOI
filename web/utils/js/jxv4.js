@@ -352,8 +352,8 @@ function jiexi(msgList) {
                     Materialize.toast(sx, 5000);
 
                 }
-                if (val.message.indexOf("ssqn") != -1) {
-                    b = val.message.replace("ssqn", "");
+                if (val.message.indexOf("qwessqn") != -1) {
+                    b = val.message.replace("qwessqn", "");
                     alert("根据老师要求，需要你对ID为" + b + "的同学进行评价");
                     $(location).attr('href', '/qn/question.html?flag=ssqn&&rid=' + b + "&&type=1")
                 }
@@ -749,13 +749,13 @@ function alertMessage(message) {
 
                 if (message.message == "tsqn" && $("#msgflag").val() != "true") {
                     alert("教师已推送试卷，需要评价");
-                    $(location).attr('href', '/qn/question.html?flag=tsqn&&ruid=' + message.sender.uid + '&&type=1')
+                    $(location).attr('href', '/utils/temp/question.html?flag=tsqn&&ruid=' + message.sender.uid + '&&type=1')
 
                 }
-                if (message.message.indexOf("ssqn") != -1 && $("#msgflag").value != "true") {
-                    b = val.message.replace("ssqn", "");
+                if (message.message.indexOf("qwessqn") != -1 && $("#msgflag").value != "true") {
+                    b = message.message.replace("qwessqn", "");
                     alert("根据老师要求，需要你对ID为" + b + "的同学进行评价");
-                    $(location).attr('href', '/qn/question.html?flag=ssqn&&rid=' + b + "&&type=1")
+                    $(location).attr('href', '/utils/temp/question.html?flag=ssqn&&rid=' + b + "&&type=1")
                 }
 
                 break;
@@ -1070,10 +1070,11 @@ function openGroupMessage(groupid) {
 
 function findQnresult(tp) {
     $.ajax({
-        url: "/getQnRs",
+        url: "/ass/getQnRs",
         data: {type: tp},
         success: function (data) {
-            $.each(data.qn, function (key, val) {
+            $.each(data, function (key, val) {
+                alert("111111");
                 if (tp == 2) {
                     $("#qn1").append(
                         "        <li class=\"collection-item\">\n" +
@@ -1083,6 +1084,9 @@ function findQnresult(tp) {
                         "                        </div>\n" +
                         "                        <div class=\"col s3\">\n" +
                         "                            <span class=\"task-cat cyan\">tea1</span>\n" +
+                        "                        </div>\n" +
+                        "                         <div class=\"col s3\">\n" +
+                        "                            <p class=\"collections-title\" onclick='deleteAss(" + val.cid + "," + val.type + ")'>删除</p>\n" +
                         "                        </div>\n" +
                         "                        <div class=\"col s3\">\n" +
                         "                            <div class=\"project-line-1\"></div>\n" +
@@ -1099,6 +1103,9 @@ function findQnresult(tp) {
                         "                        </div>\n" +
                         "                        <div class=\"col s3\">\n" +
                         "                            <span class=\"task-cat cyan\">匿名</span>\n" +
+                        "                        </div>\n" +
+                        "                         <div class=\"col s3\">\n" +
+                        "                            <p class=\"collections-title\" onclick='deleteAss(" + val.cid + "," + val.type + ")'>删除</p>\n" +
                         "                        </div>\n" +
                         "                        <div class=\"col s3\">\n" +
                         "                            <div class=\"project-line-1\"></div>\n" +
@@ -1119,4 +1126,26 @@ function findQnresult(tp) {
     })
 
 
+}
+
+//删除评价成绩
+function deleteAss(id, type) {
+    $.ajax({
+        url: "/ass/delRs",
+        data: {"cid": id},
+        success: function (data) {
+            if (type == 2) {
+                $("#qn1").children(":not(:first)").remove();
+                findQnresult(2)
+            } else {
+
+                $("#qn2").children(":not(:first)").remove();
+                findQnresult(1)
+
+            }
+        },
+        error: function () {
+            console.info("失败")
+        }
+    })
 }
